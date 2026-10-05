@@ -430,3 +430,17 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .faq { border-bottom: 1px solid var(--line); padding: 14px 0; }
 .faq summary { cursor: pointer; font-weight: 700; font-size: 15px; }
 .faq p { margin: 10px 0 0; font-size: 14px; line-height: 1.9; color: var(--sub); }
+
+.paygrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pay { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+.pay .k-num { font: 700 40px/1 var(--num); color: var(--accent); }
+.pay.base .k-num { color: var(--sub); }
+@media (max-width: 760px) { .paygrid { grid-template-columns: 1fr; } }
+
+.budgets { flex: 1 1 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: var(--dark-sub); }
+.budgets button { padding: 6px 12px; border-radius: 999px; border: 1px solid #4A5A52; background: transparent; color: #fff; font-weight: 700; font-size: 13px; cursor: pointer; }
+.budgets button[aria-pressed="true"] { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+
+.tip { display: inline-grid; place-items: center; width: 16px; height: 16px; margin-left: 2px; border-radius: 50%; border: 1px solid var(--faint); background: transparent; color: var(--muted); font: 700 10px/1 sans-serif; cursor: pointer; vertical-align: 1px; padding: 0; }
+.tipbox { display: block; margin-top: 4px; padding: 8px 10px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 400; line-height: 1.6; text-align: left; }
+.tipbox[hidden] { display: none; }

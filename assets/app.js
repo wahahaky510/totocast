@@ -44,7 +44,8 @@
     var PRESETS = { reset: DEF };
     try { var PP = JSON.parse(picker.getAttribute('data-presets') || '{}'); Object.keys(PP).forEach(function (k) { PRESETS[k] = PP[k]; }); } catch (e) {}
     var KEYS = ['1', '0', '2'];
-    var LIMIT = 300000;   // これ以上の組合せは数えない（ブラウザが重くなるため）
+    var LIMIT = 300000;
+    var budgetN = 0;   // 予算モード: フィルタ後の組合せを確率の高い順に budgetN 通りだけ買う   // これ以上の組合せは数えない（ブラウザが重くなるため）
 
     function opts(m) { return Array.prototype.slice.call(m.querySelectorAll('.opt')); }
     function sel(m) { return opts(m).filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).map(function (b) { return b.getAttribute('data-k'); }); }
@@ -75,6 +76,7 @@
           var P = matches.map(function (m) { return m.getAttribute('data-p').split(',').map(Number); });
           var FV = matches.map(function (m) { return m.getAttribute('data-fav'); });
           count = 0;
+          var all = [];
           var idx = lists.map(function () { return 0; });
           for (;;) {
             var up = 0, dr = 0, lp = 0, s = '';
@@ -88,11 +90,16 @@
             var gm = Math.exp(lp / lists.length) * 100;
             if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM && gm <= f.maxGM) {
               count++;
-              if (out.length < 500) out.push(s);
+              if (budgetN) all.push([lp, s]); else if (out.length < 500) out.push(s);
             }
             var c = lists.length - 1;
             while (c >= 0 && ++idx[c] >= lists[c].length) { idx[c] = 0; c--; }
             if (c < 0) break;
+          }
+          if (budgetN) {
+            all.sort(function (a, b) { return b[0] - a[0]; });
+            out = all.slice(0, budgetN).map(function (x) { return x[1]; });
+            if (count > budgetN) count = budgetN;
           }
         }
       }
@@ -109,8 +116,10 @@
         show.forEach(function (s) { var li = document.createElement('li'); li.textContent = s.split('').join(' '); combosEl.appendChild(li); });
         combosEl.parentNode.hidden = !show.length;
       }
-      hintEl.textContent = missing ? '全試合で1つ以上選んでください' : (isRec() ? recHint : '');
-      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f })); } catch (e) {}
+      hintEl.textContent = missing ? '全試合で1つ以上選んでください'
+        : (budgetN ? '予算' + (budgetN * 100).toLocaleString('ja-JP') + '円：おすすめの中から当たりやすい順に' + count + '通り' : (isRec() ? recHint : ''));
+      document.querySelectorAll('[data-budget]').forEach(function (x) { var bn = +x.getAttribute('data-budget'); x.setAttribute('aria-pressed', ((bn === 100 ? 0 : bn) === budgetN && isRec()) ? 'true' : 'false'); });
+      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: budgetN })); } catch (e) {}
     }
     function setRec() {
       matches.forEach(function (m) {
@@ -134,11 +143,12 @@
       if (!b) return;
       b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
       if (typeof disarm === 'function') disarm();
+      budgetN = 0;
       update();
     });
-    IDS.forEach(function (id) { var el = document.getElementById(id); if (el) el.addEventListener('input', update); });
+    IDS.forEach(function (id) { var el = document.getElementById(id); if (el) el.addEventListener('input', function () { budgetN = 0; update(); }); });
     document.querySelectorAll('[data-preset]').forEach(function (b) {
-      b.addEventListener('click', function () { setF(PRESETS[b.getAttribute('data-preset')]); update(); });
+      b.addEventListener('click', function () { budgetN = 0; setF(PRESETS[b.getAttribute('data-preset')]); update(); });
     });
     // 自分で入力した目があるときは、すぐに上書きせず確認を1回挟む
     var recBtn = document.querySelector('[data-recommend]');
@@ -150,7 +160,9 @@
     function edited() {
       return !isRec() && matches.some(function (m) { return sel(m).length > 0; });
     }
-    recBtn.addEventListener('click', function () {
+    var pendingN = 0;
+    function askRec(n) {
+      pendingN = n;
       if (edited() && !armed) {
         armed = true;
         recBtn.textContent = '入力中の目が消えます。もう一度押して確定';
@@ -158,10 +170,15 @@
         armTimer = setTimeout(disarm, 5000);
         return;
       }
-      disarm(); setRec();
+      disarm(); budgetN = pendingN; setRec();
+    }
+    recBtn.addEventListener('click', function () { askRec(0); });
+    document.querySelectorAll('[data-budget]').forEach(function (b) {
+      b.addEventListener('click', function () { var n = +b.getAttribute('data-budget'); askRec(n === 100 ? 0 : n); });
     });
     document.querySelector('[data-clear]').addEventListener('click', function () {
       matches.forEach(function (m) { opts(m).forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); });
+      budgetN = 0;
       update();
     });
     setRec();
@@ -240,6 +257,12 @@
     while (j >= 0 && ++idx[j] >= lists[j].length) { idx[j] = 0; j--; }
     if (j < 0) break;
   }
+  if (st && st.top && combos.length > st.top) {
+    var lpOf = function (c) { return c.reduce(function (a, k, i) { return a + Math.log(Math.max(C.matches[i].p[KEYS.indexOf(k)], 0.01) / 100); }, 0); };
+    combos.sort(function (a, b) { return lpOf(b) - lpOf(a); });
+    combos = combos.slice(0, st.top);
+    src += '（予算' + (st.top * 100).toLocaleString('ja-JP') + '円）';
+  }
   if (!combos.length) { root.innerHTML = '<p class="note">フィルタに合う組合せが0通りです。予想ページでフィルタを広げてください</p>'; return; }
   // 重複なしのマルチ券に分割
   function cells(allowed) {
@@ -296,3 +319,10 @@
     });
   });
 })();
+
+/* ---------- 用語の「?」 ---------- */
+document.addEventListener('click', function (e) {
+  var t = e.target.closest('.tip');
+  document.querySelectorAll('.tipbox').forEach(function (b) { if (!t || b !== t.nextElementSibling) b.hidden = true; });
+  if (t) { e.preventDefault(); e.stopPropagation(); var b = t.nextElementSibling; b.hidden = !b.hidden; }
+}, true);
