@@ -1,487 +1,187 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>第1660回 toto 独自モデル予想 | totoCast</title>
-<meta content="第1660回 totoの全13試合を独自モデルで予想。各試合の勝敗確率(1/0/2)・モデル本命・買い目シミュレーション。" name="description"/>
-<meta content="第1660回 toto 独自モデル予想 | totoCast" property="og:title"/>
-<meta content="第1660回 totoの全13試合を独自モデルで予想。各試合の勝敗確率(1/0/2)・モデル本命・買い目シミュレーション。" property="og:description"/>
-<meta content="website" property="og:type"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Noto+Sans+JP:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="../style.css" rel="stylesheet"/>
-<style>.pubstamp{background:#fffbea;border:1px solid #f1e3a6;border-radius:12px;padding:9px 14px;margin:10px 0;font-size:13px}.pubstamp code{font-family:"JetBrains Mono",monospace;background:#fff;padding:1px 6px;border-radius:5px}.pubstamp span{display:block;color:var(--mut);font-size:11.5px;margin-top:2px}</style><style id="simplecss">/* === simple mode === */
-body{font-size:15px}
-.hero{padding:22px 0 8px}.hero h1{font-size:26px;line-height:1.25;margin:4px 0}
-.hero .sub{display:none}
-details.more{margin:6px 0 12px}details.more>summary{cursor:pointer;color:var(--mut);font-size:12.5px;list-style:none;display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
-details.more>summary::-webkit-details-marker{display:none}details.more[open]>summary{margin-bottom:6px}
-details.more .pagenote,details.more .livenote,details.more .pubstamp{margin:6px 0}
-details.tbl>summary{font-weight:700;color:var(--cy)}
-.foot .disc{font-size:11px}.foot .disc .full{display:none}
-.pickbtn .po,.pickbtn .ptag,.pickbtn .pvt{display:none}
-.pickbtn .pp{display:block;font:700 13px "JetBrains Mono",monospace;color:var(--tx);margin-top:2px}
-.pickbtn .pp .ana{margin-left:4px}
-.aimini .detailhint{display:none}
-.card .teams{display:none}.card .cardtop{padding-bottom:0}.card .chd{margin-bottom:2px}.card .aimini{margin-top:0}
-.anarow{font-size:12px;color:var(--mut);margin:6px 0 2px}.anarow b{color:var(--tx)}
-.mini .mm{display:none}
-.ntile .ds{display:none}.ntile .em{font-size:22px}.ntile .tt{font-size:15px}
-@media(max-width:760px){.stats{grid-template-columns:repeat(3,1fr)!important;gap:8px}.stats .tile{padding:12px 8px;text-align:center}.stats .tn{font-size:24px}.stats .tl{font-size:11px}}.ntile{padding:14px}.stats .tile em{display:none}.rbig .rdate{display:none}
-@media(max-width:760px){.brand .tag{display:none}}
-.scards{grid-template-columns:1fr 1fr!important}
-.simplestat{display:flex;gap:10px;margin:14px 0}.simplestat .tile{flex:1}
-.nav nav a{padding:6px 12px}
-@media(max-width:760px){.hero h1{font-size:22px}.charts{gap:10px}}
-</style></head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第1660回 toto予想 | totoCast</title>
+<meta name="description" content="第1660回toto全13試合の勝敗確率と独自モデルのおすすめの目。">
+<meta name="theme-color" content="#F4F5F1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/app.js" defer></script>
+</head>
 <body>
-<header class="nav">
-<a class="brand" href="../index.html"><span class="logo">toto<b>Cast</b></span><span class="tag">サッカーtoto 独自モデル予想 &amp; 検証データ</span></a>
-<nav><a class="" href="../index.html">ホーム</a><a class="on" href="../yosou/1660.html">予想</a><a class="" href="../jisseki.html">統計</a><a class="" href="../db.html">データベース</a><a class="" href="../news.html">ニュース</a><a class="" href="../archive.html">アーカイブ</a><a class="" href="../guide.html">ガイド</a><a class="" href="../about.html">about</a></nav>
+<header class="site-header">
+  <a class="logo" href="../index.html">toto<span>Cast</span></a>
+  <nav class="nav" aria-label="メイン"><a href="../yosou/1660.html" aria-current="page">予想</a><a href="../jisseki.html">統計</a><a href="../db.html">データベース</a><a href="../news.html">ニュース</a><a href="../archive.html">アーカイブ</a><a href="../guide.html">ガイド</a><a href="../about.html">about</a></nav>
 </header>
-<main>
-<section class="hero sm">
-<div class="eyebrow">独自モデル予想 · 第1660回</div>
-<h1>第1660回 toto 予想 <span class="diffbadge hard">難易度：荒れ気味</span></h1>
-<p class="sub">対象は J1 8試合・J2 5試合（10/10(土)〜10/11(日)）。</p>
+<main class="wrap">
+<section class="page-head">
+  <span class="eyebrow">ROUND 1660 · 速報版</span>
+  <h1 class="h1">第1660回 toto予想</h1>
+  <div class="meta"><span>J1 8試合 · J2 5試合</span><span>10/10(土)〜10/11(日)</span>
+    <span class="pill pill-warn">荒れ気味</span><span class="pill pill-warn" data-deadline="2026-10-10T13:50:00+09:00" data-open-only><span class="dot"></span>締切まであと<span data-countdown data-format="dh">–</span></span></div>
 </section>
-<div class="countbar">
-<div class="fcount">選択 <b id="raw">–</b> 通り <span class="arw2">→（フィルタ）</span> <b id="combos">–</b> 通り <span id="cost"></span></div>
-<a class="calcbtn" href="1660-keisan.html">買目計算 →</a>
+
+<div class="hl-wrap">
+<div class="hl-chara"><img class="chara" src="../assets/chara/A_16_explaining.webp" alt="" width="124" height="69">今回の見どころ</div>
+<section class="highlights" aria-label="今回の見どころ">
+  <div><span class="hl-label">堅い本命</span><span class="hl-value">川崎F · 徳島 · 仙台</span></div>
+  <div><span class="hl-label">接戦（どの目も45%未満）</span><span class="num" style="font-size:28px;font-weight:700;line-height:1">9<small style="font-size:15px;color:#5A6660"> 試合</small></span></div>
+  <div><span class="hl-label">ねらい目</span><span class="hl-value"><span style="color:#9A420A">◆</span> 第7試合 東京V勝ち・引分</span></div>
+</section>
 </div>
-<div class="actionbar">
-<button class="primary" id="setai">モデルのおすすめを入れる（52通り・5,200円）</button>
-<button id="clear">クリア</button>
+
+<section style="padding-top:40px" data-picker data-round="1660" data-rec-hint="おすすめの目 729通り → フィルタ（波乱0・引分1〜5・堅さ41%以上）で 52通り · 5,200円" data-rec-filter='{"minUpset": 0, "maxUpset": 0, "minDraw": 1, "maxDraw": 5, "minGM": 41, "maxGM": 100}'>
+  <div class="list-head"><h2 class="h2">13試合の確率</h2><span class="note">タップで目を選択 · 数字はモデルの確率</span></div>
+  <div class="match" data-match data-rec="1,0,2" data-p="32,29,39" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-1"><span class="match-no">1</span>
+    <span class="mi-body"><span class="sub">10/10 14:00 · J1</span><span class="match-teams">セレッソ大阪 <span>vs</span> 横浜F・マリノス</span>
+    <span class="sub form-line"><span>11位 <span class="form" title="直近5試合（左が最新）"><i class="fd">△</i><i class="fl">×</i><i class="fd">△</i><i class="fw">〇</i><i class="fl">×</i></span></span><span>6位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fd">△</i><i class="fw">〇</i><i class="fd">△</i><i class="fl">×</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第1試合 1 ホーム 32%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">32%</span><span class="opt-vote">投票 29%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第1試合 0 引分 29%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">29%</span><span class="opt-vote">投票 22%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第1試合 2 アウェイ 39%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">39%</span><span class="opt-vote">投票 50%</span></button></div>
+  <div class="mdetail" id="md-1" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:32%"></i><b>32%</b></span></td><td><span class="dbar vot"><i style="width:29%"></i><b>29%</b></span></td><td class="n">55</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:29%"></i><b>29%</b></span></td><td><span class="dbar vot"><i style="width:22%"></i><b>22%</b></span></td><td class="n">60</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:39%"></i><b>39%</b></span></td><td><span class="dbar vot"><i style="width:50%"></i><b>50%</b></span></td><td class="n">41</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>C大阪</th><th>横浜FM</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">45%</td><td class="n">42%</td></tr><tr><th>順当勝率</th><td class="n">38%</td><td class="n">56%</td></tr><tr><th>均衡勝率</th><td class="n">38%</td><td class="n">41%</td></tr><tr><th>波乱勝率</th><td class="n">41%</td><td class="n">36%</td></tr><tr><th>引分率</th><td class="n">28%</td><td class="n">19%</td></tr><tr><th>平均得点</th><td class="n">1.30</td><td class="n">1.65</td></tr><tr><th>平均失点</th><td class="n">1.24</td><td class="n">1.31</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1" data-p="44,25,31" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-2"><span class="match-no">2</span>
+    <span class="mi-body"><span class="sub">10/10 15:00 · J1</span><span class="match-teams">FC東京 <span>vs</span> 浦和レッズ</span>
+    <span class="sub form-line"><span>5位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fw">〇</i><i class="fw">〇</i><i class="fd">△</i><i class="fw">〇</i></span></span><span>10位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fl">×</i><i class="fw">〇</i><i class="fw">〇</i><i class="fw">〇</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第2試合 1 ホーム 44%"><span class="opt-top">1 ホーム<span>本命</span></span><span class="opt-pct">44%</span><span class="opt-vote">投票 52%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第2試合 0 引分 25%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">25%</span><span class="opt-vote">投票 22%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第2試合 2 アウェイ 31%"><span class="opt-top">2 アウェイ<span></span></span><span class="opt-pct">31%</span><span class="opt-vote">投票 26%</span></button></div>
+  <div class="mdetail" id="md-2" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:44%"></i><b>44%</b></span></td><td><span class="dbar vot"><i style="width:52%"></i><b>52%</b></span></td><td class="n">44</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:25%"></i><b>25%</b></span></td><td><span class="dbar vot"><i style="width:22%"></i><b>22%</b></span></td><td class="n">54</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:31%"></i><b>31%</b></span></td><td><span class="dbar vot"><i style="width:26%"></i><b>26%</b></span></td><td class="n">57</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>FC東京</th><th>浦和</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">46%</td><td class="n">27%</td></tr><tr><th>順当勝率</th><td class="n">43%</td><td class="n">46%</td></tr><tr><th>均衡勝率</th><td class="n">42%</td><td class="n">34%</td></tr><tr><th>波乱勝率</th><td class="n">30%</td><td class="n">33%</td></tr><tr><th>引分率</th><td class="n">25%</td><td class="n">32%</td></tr><tr><th>平均得点</th><td class="n">1.32</td><td class="n">1.32</td></tr><tr><th>平均失点</th><td class="n">1.25</td><td class="n">1.09</td></tr></tbody></table></div></div><ul class="dnews"><li><span class="tag tag-warn">出場停止</span> FC東京 高 宇洋</li></ul><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="2" data-p="30,29,40" data-fav="away">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-3"><span class="match-no">3</span>
+    <span class="mi-body"><span class="sub">10/10 15:00 · J1</span><span class="match-teams">アビスパ福岡 <span>vs</span> ファジアーノ岡山</span>
+    <span class="sub form-line"><span>18位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fd">△</i><i class="fl">×</i><i class="fl">×</i></span></span><span>9位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fw">〇</i><i class="fw">〇</i><i class="fw">〇</i><i class="fl">×</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第3試合 1 ホーム 30%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">30%</span><span class="opt-vote">投票 23%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第3試合 0 引分 29%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">29%</span><span class="opt-vote">投票 26%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第3試合 2 アウェイ 40%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">40%</span><span class="opt-vote">投票 51%</span></button></div>
+  <div class="mdetail" id="md-3" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:30%"></i><b>30%</b></span></td><td><span class="dbar vot"><i style="width:23%"></i><b>23%</b></span></td><td class="n">60</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:29%"></i><b>29%</b></span></td><td><span class="dbar vot"><i style="width:26%"></i><b>26%</b></span></td><td class="n">54</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:40%"></i><b>40%</b></span></td><td><span class="dbar vot"><i style="width:51%"></i><b>51%</b></span></td><td class="n">41</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>福岡</th><th>岡山</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">34%</td><td class="n">28%</td></tr><tr><th>順当勝率</th><td class="n">41%</td><td class="n">38%</td></tr><tr><th>均衡勝率</th><td class="n">29%</td><td class="n">37%</td></tr><tr><th>波乱勝率</th><td class="n">28%</td><td class="n">23%</td></tr><tr><th>引分率</th><td class="n">31%</td><td class="n">25%</td></tr><tr><th>平均得点</th><td class="n">0.94</td><td class="n">1.08</td></tr><tr><th>平均失点</th><td class="n">1.15</td><td class="n">1.22</td></tr></tbody></table></div></div><ul class="dnews"><li><span class="tag tag-warn">出場停止</span> ファジアーノ岡山 ルカオ</li><li><span class="tag tag-warn">出場停止</span> アビスパ福岡 上島 拓巳</li><li><span class="tag tag-warn">出場停止</span> アビスパ福岡 見木 友哉</li></ul><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1,0,2" data-p="34,31,35" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-4"><span class="match-no">4</span>
+    <span class="mi-body"><span class="sub">10/10 16:00 · J1</span><span class="match-teams">ジェフユナイテッド千葉 <span>vs</span> V・ファーレン長崎</span>
+    <span class="sub form-line"><span>20位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fd">△</i><i class="fw">〇</i><i class="fl">×</i><i class="fl">×</i></span></span><span>15位 <span class="form" title="直近5試合（左が最新）"><i class="fd">△</i><i class="fw">〇</i><i class="fl">×</i><i class="fd">△</i><i class="fl">×</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第4試合 1 ホーム 34%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">34%</span><span class="opt-vote">投票 30%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第4試合 0 引分 31%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">31%</span><span class="opt-vote">投票 23%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第4試合 2 アウェイ 35%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">35%</span><span class="opt-vote">投票 48%</span></button></div>
+  <div class="mdetail" id="md-4" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:34%"></i><b>34%</b></span></td><td><span class="dbar vot"><i style="width:30%"></i><b>30%</b></span></td><td class="n">55</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:31%"></i><b>31%</b></span></td><td><span class="dbar vot"><i style="width:23%"></i><b>23%</b></span></td><td class="n">61</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:35%"></i><b>35%</b></span></td><td><span class="dbar vot"><i style="width:48%"></i><b>48%</b></span></td><td class="n">39</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>千葉</th><th>長崎</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">25%</td><td class="n">25%</td></tr><tr><th>順当勝率</th><td class="n">–</td><td class="n">–</td></tr><tr><th>均衡勝率</th><td class="n">6%</td><td class="n">36%</td></tr><tr><th>波乱勝率</th><td class="n">30%</td><td class="n">0%</td></tr><tr><th>引分率</th><td class="n">15%</td><td class="n">15%</td></tr><tr><th>平均得点</th><td class="n">0.96</td><td class="n">1.15</td></tr><tr><th>平均失点</th><td class="n">1.88</td><td class="n">1.65</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1,0,2" data-p="35,27,37" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-5"><span class="match-no">5</span>
+    <span class="mi-body"><span class="sub">10/10 14:00 · J1</span><span class="match-teams">水戸ホーリーホック <span>vs</span> 清水エスパルス</span>
+    <span class="sub form-line"><span>13位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fd">△</i><i class="fw">〇</i><i class="fd">△</i></span></span><span>12位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fw">〇</i><i class="fl">×</i><i class="fd">△</i><i class="fl">×</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第5試合 1 ホーム 35%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">35%</span><span class="opt-vote">投票 33%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第5試合 0 引分 27%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">27%</span><span class="opt-vote">投票 28%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第5試合 2 アウェイ 37%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">37%</span><span class="opt-vote">投票 39%</span></button></div>
+  <div class="mdetail" id="md-5" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:35%"></i><b>35%</b></span></td><td><span class="dbar vot"><i style="width:33%"></i><b>33%</b></span></td><td class="n">52</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:27%"></i><b>27%</b></span></td><td><span class="dbar vot"><i style="width:28%"></i><b>28%</b></span></td><td class="n">49</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:37%"></i><b>37%</b></span></td><td><span class="dbar vot"><i style="width:39%"></i><b>39%</b></span></td><td class="n">49</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>水戸</th><th>清水</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">23%</td><td class="n">27%</td></tr><tr><th>順当勝率</th><td class="n">–</td><td class="n">33%</td></tr><tr><th>均衡勝率</th><td class="n">17%</td><td class="n">29%</td></tr><tr><th>波乱勝率</th><td class="n">12%</td><td class="n">15%</td></tr><tr><th>引分率</th><td class="n">42%</td><td class="n">33%</td></tr><tr><th>平均得点</th><td class="n">1.15</td><td class="n">1.12</td></tr><tr><th>平均失点</th><td class="n">1.77</td><td class="n">1.37</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="2" data-p="29,29,42" data-fav="away">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-6"><span class="match-no">6</span>
+    <span class="mi-body"><span class="sub">10/10 19:00 · J1</span><span class="match-teams">京都サンガF.C. <span>vs</span> FC町田ゼルビア</span>
+    <span class="sub form-line"><span>14位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fl">×</i><i class="fl">×</i><i class="fd">△</i><i class="fw">〇</i></span></span><span>4位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fd">△</i><i class="fw">〇</i><i class="fw">〇</i><i class="fd">△</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第6試合 1 ホーム 29%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">29%</span><span class="opt-vote">投票 19%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第6試合 0 引分 29%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">29%</span><span class="opt-vote">投票 19%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第6試合 2 アウェイ 42%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">42%</span><span class="opt-vote">投票 62%</span></button></div>
+  <div class="mdetail" id="md-6" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:29%"></i><b>29%</b></span></td><td><span class="dbar vot"><i style="width:19%"></i><b>19%</b></span></td><td class="n">66</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:29%"></i><b>29%</b></span></td><td><span class="dbar vot"><i style="width:19%"></i><b>19%</b></span></td><td class="n">66</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:42%"></i><b>42%</b></span></td><td><span class="dbar vot"><i style="width:62%"></i><b>62%</b></span></td><td class="n">36</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>京都</th><th>町田</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">36%</td><td class="n">49%</td></tr><tr><th>順当勝率</th><td class="n">46%</td><td class="n">54%</td></tr><tr><th>均衡勝率</th><td class="n">33%</td><td class="n">40%</td></tr><tr><th>波乱勝率</th><td class="n">29%</td><td class="n">60%</td></tr><tr><th>引分率</th><td class="n">26%</td><td class="n">27%</td></tr><tr><th>平均得点</th><td class="n">1.21</td><td class="n">1.47</td></tr><tr><th>平均失点</th><td class="n">1.29</td><td class="n">0.99</td></tr></tbody></table></div></div><ul class="dnews"><li><span class="tag tag-warn">出場停止</span> FC町田ゼルビア 下田 北斗</li></ul><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="2" data-p="26,28,45" data-fav="away">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-7"><span class="match-no">7</span>
+    <span class="mi-body"><span class="sub">10/11 15:00 · J1</span><span class="match-teams">東京ヴェルディ <span>vs</span> サンフレッチェ広島</span>
+    <span class="sub form-line"><span>19位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fd">△</i><i class="fd">△</i><i class="fl">×</i><i class="fl">×</i></span></span><span>3位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fw">〇</i><i class="fl">×</i><i class="fw">〇</i><i class="fd">△</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第7試合 1 ホーム 26%"><span class="opt-top">1 ホーム<span>◆</span></span><span class="opt-pct">26%</span><span class="opt-vote">投票 12%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第7試合 0 引分 28%"><span class="opt-top">0 引分<span>◆</span></span><span class="opt-pct">28%</span><span class="opt-vote">投票 12%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第7試合 2 アウェイ 45%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">45%</span><span class="opt-vote">投票 76%</span></button></div>
+  <div class="mdetail" id="md-7" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:26%"></i><b>26%</b></span></td><td><span class="dbar vot"><i style="width:12%"></i><b>12%</b></span></td><td class="n hot">78 ◆</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:28%"></i><b>28%</b></span></td><td><span class="dbar vot"><i style="width:12%"></i><b>12%</b></span></td><td class="n hot">81 ◆</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:45%"></i><b>45%</b></span></td><td><span class="dbar vot"><i style="width:76%"></i><b>76%</b></span></td><td class="n">31</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>東京V</th><th>広島</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">37%</td><td class="n">41%</td></tr><tr><th>順当勝率</th><td class="n">58%</td><td class="n">48%</td></tr><tr><th>均衡勝率</th><td class="n">26%</td><td class="n">51%</td></tr><tr><th>波乱勝率</th><td class="n">23%</td><td class="n">44%</td></tr><tr><th>引分率</th><td class="n">31%</td><td class="n">25%</td></tr><tr><th>平均得点</th><td class="n">0.95</td><td class="n">1.54</td></tr><tr><th>平均失点</th><td class="n">1.26</td><td class="n">0.98</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1" data-p="54,25,21" data-fav="home">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-8"><span class="match-no">8</span>
+    <span class="mi-body"><span class="sub">10/11 16:00 · J1</span><span class="match-teams">川崎フロンターレ <span>vs</span> 名古屋グランパス</span>
+    <span class="sub form-line"><span>7位 <span class="form" title="直近5試合（左が最新）"><i class="fd">△</i><i class="fw">〇</i><i class="fw">〇</i><i class="fl">×</i><i class="fw">〇</i></span></span><span>17位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fw">〇</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第8試合 1 ホーム 54%"><span class="opt-top">1 ホーム<span>本命</span></span><span class="opt-pct">54%</span><span class="opt-vote">投票 70%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第8試合 0 引分 25%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">25%</span><span class="opt-vote">投票 15%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第8試合 2 アウェイ 21%"><span class="opt-top">2 アウェイ<span></span></span><span class="opt-pct">21%</span><span class="opt-vote">投票 14%</span></button></div>
+  <div class="mdetail" id="md-8" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:54%"></i><b>54%</b></span></td><td><span class="dbar vot"><i style="width:70%"></i><b>70%</b></span></td><td class="n">41</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:25%"></i><b>25%</b></span></td><td><span class="dbar vot"><i style="width:15%"></i><b>15%</b></span></td><td class="n">67</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:21%"></i><b>21%</b></span></td><td><span class="dbar vot"><i style="width:14%"></i><b>14%</b></span></td><td class="n">63</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>川崎F</th><th>名古屋</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">51%</td><td class="n">27%</td></tr><tr><th>順当勝率</th><td class="n">46%</td><td class="n">32%</td></tr><tr><th>均衡勝率</th><td class="n">42%</td><td class="n">39%</td></tr><tr><th>波乱勝率</th><td class="n">38%</td><td class="n">32%</td></tr><tr><th>引分率</th><td class="n">28%</td><td class="n">25%</td></tr><tr><th>平均得点</th><td class="n">1.69</td><td class="n">1.16</td></tr><tr><th>平均失点</th><td class="n">1.41</td><td class="n">1.27</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1,0,2" data-p="36,29,35" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-9"><span class="match-no">9</span>
+    <span class="mi-body"><span class="sub">10/10 16:00 · J2</span><span class="match-teams">ヴァンフォーレ甲府 <span>vs</span> 栃木シティ</span>
+    <span class="sub form-line"><span>20位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fw">〇</i></span></span><span>13位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fd">△</i><i class="fw">〇</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第9試合 1 ホーム 36%"><span class="opt-top">1 ホーム<span>本命</span></span><span class="opt-pct">36%</span><span class="opt-vote">投票 42%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第9試合 0 引分 29%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">29%</span><span class="opt-vote">投票 25%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第9試合 2 アウェイ 35%"><span class="opt-top">2 アウェイ<span></span></span><span class="opt-pct">35%</span><span class="opt-vote">投票 32%</span></button></div>
+  <div class="mdetail" id="md-9" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:36%"></i><b>36%</b></span></td><td><span class="dbar vot"><i style="width:42%"></i><b>42%</b></span></td><td class="n">45</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:29%"></i><b>29%</b></span></td><td><span class="dbar vot"><i style="width:25%"></i><b>25%</b></span></td><td class="n">55</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:35%"></i><b>35%</b></span></td><td><span class="dbar vot"><i style="width:32%"></i><b>32%</b></span></td><td class="n">52</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>甲府</th><th>栃木C</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">33%</td><td class="n">40%</td></tr><tr><th>順当勝率</th><td class="n">40%</td><td class="n">0%</td></tr><tr><th>均衡勝率</th><td class="n">35%</td><td class="n">38%</td></tr><tr><th>波乱勝率</th><td class="n">16%</td><td class="n">–</td></tr><tr><th>引分率</th><td class="n">27%</td><td class="n">11%</td></tr><tr><th>平均得点</th><td class="n">1.21</td><td class="n">1.67</td></tr><tr><th>平均失点</th><td class="n">1.32</td><td class="n">1.67</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1,0,2" data-p="35,28,37" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-10"><span class="match-no">10</span>
+    <span class="mi-body"><span class="sub">10/10 14:00 · J2</span><span class="match-teams">サガン鳥栖 <span>vs</span> 藤枝MYFC</span>
+    <span class="sub form-line"><span>17位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i><i class="fw">〇</i></span></span><span>7位 <span class="form" title="直近5試合（左が最新）"><i class="fd">△</i><i class="fd">△</i><i class="fd">△</i><i class="fl">×</i><i class="fd">△</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第10試合 1 ホーム 35%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">35%</span><span class="opt-vote">投票 34%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第10試合 0 引分 28%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">28%</span><span class="opt-vote">投票 27%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第10試合 2 アウェイ 37%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">37%</span><span class="opt-vote">投票 39%</span></button></div>
+  <div class="mdetail" id="md-10" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:35%"></i><b>35%</b></span></td><td><span class="dbar vot"><i style="width:34%"></i><b>34%</b></span></td><td class="n">51</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:28%"></i><b>28%</b></span></td><td><span class="dbar vot"><i style="width:27%"></i><b>27%</b></span></td><td class="n">51</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:37%"></i><b>37%</b></span></td><td><span class="dbar vot"><i style="width:39%"></i><b>39%</b></span></td><td class="n">49</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>鳥栖</th><th>藤枝</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">48%</td><td class="n">29%</td></tr><tr><th>順当勝率</th><td class="n">50%</td><td class="n">38%</td></tr><tr><th>均衡勝率</th><td class="n">33%</td><td class="n">36%</td></tr><tr><th>波乱勝率</th><td class="n">33%</td><td class="n">18%</td></tr><tr><th>引分率</th><td class="n">26%</td><td class="n">24%</td></tr><tr><th>平均得点</th><td class="n">1.15</td><td class="n">1.20</td></tr><tr><th>平均失点</th><td class="n">1.17</td><td class="n">1.49</td></tr></tbody></table></div></div><ul class="dnews"><li><span class="tag tag-warn">出場停止</span> 藤枝MYFC 島野 怜</li></ul><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1" data-p="52,21,27" data-fav="home">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-11"><span class="match-no">11</span>
+    <span class="mi-body"><span class="sub">10/10 14:00 · J2</span><span class="match-teams">徳島ヴォルティス <span>vs</span> FC今治</span>
+    <span class="sub form-line"><span>9位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fw">〇</i><i class="fw">〇</i><i class="fl">×</i><i class="fw">〇</i></span></span><span>19位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fl">×</i><i class="fl">×</i><i class="fw">〇</i><i class="fd">△</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第11試合 1 ホーム 52%"><span class="opt-top">1 ホーム<span>本命</span></span><span class="opt-pct">52%</span><span class="opt-vote">投票 66%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第11試合 0 引分 21%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">21%</span><span class="opt-vote">投票 17%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第11試合 2 アウェイ 27%"><span class="opt-top">2 アウェイ<span></span></span><span class="opt-pct">27%</span><span class="opt-vote">投票 17%</span></button></div>
+  <div class="mdetail" id="md-11" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:52%"></i><b>52%</b></span></td><td><span class="dbar vot"><i style="width:66%"></i><b>66%</b></span></td><td class="n">42</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:21%"></i><b>21%</b></span></td><td><span class="dbar vot"><i style="width:17%"></i><b>17%</b></span></td><td class="n">57</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:27%"></i><b>27%</b></span></td><td><span class="dbar vot"><i style="width:17%"></i><b>17%</b></span></td><td class="n">66</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>徳島</th><th>今治</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">38%</td><td class="n">42%</td></tr><tr><th>順当勝率</th><td class="n">46%</td><td class="n">60%</td></tr><tr><th>均衡勝率</th><td class="n">39%</td><td class="n">22%</td></tr><tr><th>波乱勝率</th><td class="n">23%</td><td class="n">30%</td></tr><tr><th>引分率</th><td class="n">36%</td><td class="n">32%</td></tr><tr><th>平均得点</th><td class="n">1.11</td><td class="n">1.17</td></tr><tr><th>平均失点</th><td class="n">0.98</td><td class="n">1.36</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="2" data-p="17,26,57" data-fav="away">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-12"><span class="match-no">12</span>
+    <span class="mi-body"><span class="sub">10/11 13:05 · J2</span><span class="match-teams">モンテディオ山形 <span>vs</span> ベガルタ仙台</span>
+    <span class="sub form-line"><span>10位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fw">〇</i><i class="fl">×</i><i class="fl">×</i><i class="fl">×</i></span></span><span>1位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fw">〇</i><i class="fw">〇</i><i class="fd">△</i><i class="fw">〇</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第12試合 1 ホーム 17%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">17%</span><span class="opt-vote">投票 17%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第12試合 0 引分 26%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">26%</span><span class="opt-vote">投票 17%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第12試合 2 アウェイ 57%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">57%</span><span class="opt-vote">投票 66%</span></button></div>
+  <div class="mdetail" id="md-12" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:17%"></i><b>17%</b></span></td><td><span class="dbar vot"><i style="width:17%"></i><b>17%</b></span></td><td class="n">50</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:26%"></i><b>26%</b></span></td><td><span class="dbar vot"><i style="width:17%"></i><b>17%</b></span></td><td class="n">65</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:57%"></i><b>57%</b></span></td><td><span class="dbar vot"><i style="width:66%"></i><b>66%</b></span></td><td class="n">45</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>山形</th><th>仙台</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">53%</td><td class="n">42%</td></tr><tr><th>順当勝率</th><td class="n">55%</td><td class="n">40%</td></tr><tr><th>均衡勝率</th><td class="n">45%</td><td class="n">45%</td></tr><tr><th>波乱勝率</th><td class="n">38%</td><td class="n">33%</td></tr><tr><th>引分率</th><td class="n">18%</td><td class="n">28%</td></tr><tr><th>平均得点</th><td class="n">1.48</td><td class="n">1.36</td></tr><tr><th>平均失点</th><td class="n">1.14</td><td class="n">1.23</td></tr></tbody></table></div></div><ul class="dnews"><li><span class="tag tag-warn">出場停止</span> モンテディオ山形 ディサロ 燦シルヴァーノ</li></ul><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
+</div><div class="match" data-match data-rec="1,0,2" data-p="35,29,36" data-fav="even">
+  <button type="button" class="match-info" aria-expanded="false" aria-controls="md-13"><span class="match-no">13</span>
+    <span class="mi-body"><span class="sub">10/11 15:00 · J2</span><span class="match-teams">いわきFC <span>vs</span> ブラウブリッツ秋田</span>
+    <span class="sub form-line"><span>16位 <span class="form" title="直近5試合（左が最新）"><i class="fl">×</i><i class="fl">×</i><i class="fw">〇</i><i class="fw">〇</i><i class="fl">×</i></span></span><span>8位 <span class="form" title="直近5試合（左が最新）"><i class="fw">〇</i><i class="fd">△</i><i class="fd">△</i><i class="fw">〇</i><i class="fd">△</i></span></span></span>
+    <span class="more-hint">詳細 ▾</span></span>
+  </button>
+  <div class="opts"><button type="button" class="opt" data-k="1" aria-pressed="false" aria-label="第13試合 1 ホーム 35%"><span class="opt-top">1 ホーム<span></span></span><span class="opt-pct">35%</span><span class="opt-vote">投票 37%</span></button><button type="button" class="opt" data-k="0" aria-pressed="false" aria-label="第13試合 0 引分 29%"><span class="opt-top">0 引分<span></span></span><span class="opt-pct">29%</span><span class="opt-vote">投票 27%</span></button><button type="button" class="opt" data-k="2" aria-pressed="false" aria-label="第13試合 2 アウェイ 36%"><span class="opt-top">2 アウェイ<span>本命</span></span><span class="opt-pct">36%</span><span class="opt-vote">投票 36%</span></button></div>
+  <div class="mdetail" id="md-13" hidden><div class="dgrid"><div><table class="dtbl"><thead><tr><th></th><th>モデル</th><th>投票率</th><th>穴目</th></tr></thead><tbody><tr><th>1 ホーム</th><td><span class="dbar mdl"><i style="width:35%"></i><b>35%</b></span></td><td><span class="dbar vot"><i style="width:37%"></i><b>37%</b></span></td><td class="n">48</td></tr><tr><th>0 引分</th><td><span class="dbar mdl"><i style="width:29%"></i><b>29%</b></span></td><td><span class="dbar vot"><i style="width:27%"></i><b>27%</b></span></td><td class="n">53</td></tr><tr><th>2 アウェイ</th><td><span class="dbar mdl"><i style="width:36%"></i><b>36%</b></span></td><td><span class="dbar vot"><i style="width:36%"></i><b>36%</b></span></td><td class="n">50</td></tr></tbody></table></div><div><table class="dtbl"><thead><tr><th></th><th>いわき</th><th>秋田</th></tr></thead><tbody><tr><th>ホーム勝率 / アウェイ勝率</th><td class="n">33%</td><td class="n">37%</td></tr><tr><th>順当勝率</th><td class="n">46%</td><td class="n">28%</td></tr><tr><th>均衡勝率</th><td class="n">37%</td><td class="n">33%</td></tr><tr><th>波乱勝率</th><td class="n">30%</td><td class="n">36%</td></tr><tr><th>引分率</th><td class="n">24%</td><td class="n">29%</td></tr><tr><th>平均得点</th><td class="n">1.30</td><td class="n">0.99</td></tr><tr><th>平均失点</th><td class="n">1.35</td><td class="n">1.15</td></tr></tbody></table></div></div><p class="note">勝率は今のリーグでの直近5年（90分の結果）。順当＝勝点差6以上で上位側、均衡＝差6未満、波乱＝差6以上で下位側のときの勝率</p></div>
 </div>
-<div class="tabs">
-<button class="tb on" data-tab="mido">👀 見どころ</button>
-<button class="tb" data-tab="news">⚠ ニュース<span class="tbn">0</span></button>
-<button class="tb" data-tab="filter">⚙ フィルタ</button>
-</div>
-<div class="tabpanel" data-panel="mido">
-<div class="midobox"><div class="mdh">👀 今回の見どころ</div><p>堅い本命は川崎フロンターレ・徳島ヴォルティス・ベガルタ仙台。接戦（どの目も45%未満）は9試合＝No1・2・3・4・5・6・9・10・13で、ここが当落のカギ。この回の荒れ度はモデル判定で「荒れ気味」。</p></div>
-</div>
-<div class="tabpanel" data-panel="news" hidden="">
-<div class="nlist"><div class="nrow"><span class="ntx">今のところ重要なニュースはありません</span></div></div>
-</div>
-<div class="tabpanel" data-panel="filter" hidden="">
-<p class="paneltip">選んだ目の組合せを、波乱・引分の数などで絞り込みます。</p>
-<div class="fgrid">
-<label>波乱の数<span class="lhint">勝点6差以上で下位が勝ち</span><span><input id="minUpset" max="13" min="0" type="number" value="0"/>〜<input id="maxUpset" max="13" min="0" type="number" value="13"/></span></label>
-<label>引分の数<span><input id="minDraw" max="13" min="0" type="number" value="0"/>〜<input id="maxDraw" max="13" min="0" type="number" value="13"/></span></label>
-<label>買い目の堅さ（平均勝率%）<span class="lhint">高いほど堅実・低いほど穴狙い</span><span><input id="minGM" max="100" min="0" type="number" value="0"/>〜<input id="maxGM" max="100" min="0" type="number" value="100"/></span></label>
-</div>
-<div class="fpresets">
-<button data-p="honmei">本命寄り</button>
-<button data-p="balance">バランス</button>
-<button data-p="wild">波乱狙い</button>
-<button data-p="reset">フィルタ解除</button>
-</div>
-</div>
-<details class="more"><summary>ⓘ この予想について（公開時刻・おすすめの作り方）</summary><div class="pubstamp" id="pubstamp">🕒 予想公開：速報版 <b>2026/10/05 09:26</b> 記録ID <code>b3c1e9869623</code><span>最初の試合の前日に、最新の投票率で確定版に更新します。成績は確定版で記録します。</span></div><div class="livenote" id="livenote">📊 投票率は<b>2026/10/05 10:38時点</b>（販売中のため変動します・投票口数 65,392口）。「モデル」はtotoCast独自モデルv2の確率、「穴」は穴目指数（50＝人気どおり、70以上で◆）。<br/>🎫 モデルのおすすめ：各試合の目を<b>広めに選び（729通り・選んだ目のモデル上の的中見込み 13試合中9.3試合）</b>、フィルタ<b>「波乱0・引分1〜5・堅さ41%以上」</b>で<b>52通り（5,200円）</b>に絞った組合せ。ボタンで目とフィルタの両方が入ります。2025年以降の46回で同じ方法を試すと、選んだ目が当たった試合は平均9.5/13（73%）、3等以上は6.5%でした。</div></details>
+</section>
 
 
+<section class="fpanel" aria-label="フィルタ">
+  <div class="list-head"><h2 class="h2">フィルタで絞る</h2><span class="note">起こりにくい組合せを外して、買う通り数を減らします</span></div>
+  <div class="chips fpresets">
+    <button type="button" class="chip" data-preset="honmei">本命寄り</button>
+    <button type="button" class="chip" data-preset="balance">バランス</button>
+    <button type="button" class="chip" data-preset="wild">波乱狙い</button>
+    <button type="button" class="chip" data-preset="reset">フィルタなし</button>
+  </div>
+  <div class="fgrid">
+    <label><span>波乱の数</span><span class="frange"><input type="number" id="minUpset" min="0" max="13" value="0" inputmode="numeric">〜<input type="number" id="maxUpset" min="0" max="13" value="13" inputmode="numeric"></span><small>勝点差6以上の試合で下位チームが勝つ</small><small class="favg">過去平均 <b>1.8</b></small></label>
+    <label><span>引分の数</span><span class="frange"><input type="number" id="minDraw" min="0" max="13" value="0" inputmode="numeric">〜<input type="number" id="maxDraw" min="0" max="13" value="13" inputmode="numeric"></span><small>13試合のうち</small><small class="favg">過去平均 <b>3.4</b></small></label>
+    <label><span>堅さ（%）</span><span class="frange"><input type="number" id="minGM" min="0" max="100" value="0" inputmode="numeric">〜<input type="number" id="maxGM" min="0" max="100" value="100" inputmode="numeric"></span><small>選んだ目の確率の平均（幾何平均）</small><small class="favg">過去平均 <b>34.8%</b></small></label>
+  </div>
+  <p class="note" data-fnote></p>
+  <p class="note">過去平均＝過去134回の実際の結果での値。フィルタの範囲を決める目安にどうぞ</p>
+  <details class="combos"><summary>絞った組合せを見る</summary><ol data-combos></ol></details>
+</section>
+<a class="minisum" href="#summary" aria-live="polite"><span><b data-count>0</b> 通り</span><span><b data-price>0</b> 円</span><span class="minisum-go">おすすめ・購入カード ↓</span></a>
+<section class="summary" id="summary" aria-label="選んだ目">
+  <div class="summary-nums">
+    <span class="summary-count"><span data-count>0</span><small> 通り</small></span>
+    <span class="summary-price"><span data-price>0</span><small> 円</small></span>
+    <span class="summary-hint" data-hint></span>
+  </div>
+  <div class="summary-actions">
+    <button type="button" class="btn-lime" data-recommend>モデルのおすすめを入れる</button>
+    <a class="btn-ghost" data-keisan href="1660-card.html">購入カード →</a>
+    <button type="button" class="btn-ghost" data-clear>クリア</button>
+  </div>
+</section>
 
-<section class="cards"><article class="card" data-no="1">
-<div class="cardtop">
-<div class="chd"><span class="no">第1試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">セレッソ大阪</span><span class="rk">J1 11位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">横浜F・マリノス</span><span class="rk">J1 6位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 横浜F・マリノス</b><em>トリプル</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="1">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">セレッソ大阪</span><span class="po">3.07</span><span class="ptag ev">均衡</span><span class="pvt">モデル32% / 投票28%<span class="ana">穴55</span></span><span class="pp">32%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.46</span><span class="ptag dr">引分</span><span class="pvt">モデル29% / 投票22%<span class="ana">穴59</span></span><span class="pp">29%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">横浜F・マリノス</span><span class="po">2.60</span><span class="ptag ev">均衡</span><span class="pvt">モデル39% / 投票50%<span class="ana">穴41</span></span><span class="pp">39%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票28% 穴<b>55</b> ／ 0: 投票22% 穴<b>59</b> ／ 2: 投票50% 穴<b>41</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:33%"></i></div><span class="pv">33%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:29%"></i></div><span class="pv">29%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:38%"></i></div><span class="pv">38%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:28%"></i></div><span class="pv">28%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:22%"></i></div><span class="pv">22%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:50%"></i></div><span class="pv">50%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">セレッソ大阪</span><span class="tsform"><i class="f-d">△</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-w">●</i><i class="f-l">×</i></span><span class="tsrate">HOME勝率 <b>45%</b></span><span class="tssit">均衡勝率 <b>38%</b></span></div>
-<div class="tsrow"><span class="tsname">横浜F・マリノス</span><span class="tsform"><i class="f-w">●</i><i class="f-d">△</i><i class="f-w">●</i><i class="f-d">△</i><i class="f-l">×</i></span><span class="tsrate">AWAY勝率 <b>42%</b></span><span class="tssit">均衡勝率 <b>41%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイ横浜F・マリノスがやや優勢(推定38%)</li><li>順位 J1 11位 vs J1 6位</li></ul>
-</div>
-</article>
-<article class="card" data-no="2">
-<div class="cardtop">
-<div class="chd"><span class="no">第2試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm fav"><span class="nm">FC東京</span><span class="rk">J1 5位</span></div>
-<span class="vs">vs</span>
-<div class="tm"><span class="nm">浦和レッズ</span><span class="rk">J1 10位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>1 FC東京</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="2">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">FC東京</span><span class="po">2.27</span><span class="ptag ev">均衡</span><span class="pvt">モデル44% / 投票52%<span class="ana">穴44</span></span><span class="pp">44%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">4.03</span><span class="ptag dr">引分</span><span class="pvt">モデル25% / 投票22%<span class="ana">穴54</span></span><span class="pp">25%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">浦和レッズ</span><span class="po">3.21</span><span class="ptag ev">均衡</span><span class="pvt">モデル31% / 投票26%<span class="ana">穴57</span></span><span class="pp">31%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票52% 穴<b>44</b> ／ 0: 投票22% 穴<b>54</b> ／ 2: 投票26% 穴<b>57</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:44%"></i></div><span class="pv">44%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:25%"></i></div><span class="pv">25%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:31%"></i></div><span class="pv">31%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:52%"></i></div><span class="pv">52%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:22%"></i></div><span class="pv">22%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:26%"></i></div><span class="pv">26%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">FC東京</span><span class="tsform"><i class="f-w">●</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-d">△</i><i class="f-w">●</i></span><span class="tsrate">HOME勝率 <b>46%</b></span><span class="tssit">均衡勝率 <b>42%</b></span></div>
-<div class="tsrow"><span class="tsname">浦和レッズ</span><span class="tsform"><i class="f-w">●</i><i class="f-l">×</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-w">●</i></span><span class="tsrate">AWAY勝率 <b>27%</b></span><span class="tssit">均衡勝率 <b>34%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>ホームFC東京がやや優勢(推定44%)</li><li>順位 J1 5位 vs J1 10位</li></ul>
-</div>
-</article>
-<article class="card" data-no="3">
-<div class="cardtop">
-<div class="chd"><span class="no">第3試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">アビスパ福岡</span><span class="rk">J1 18位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">ファジアーノ岡山</span><span class="rk">J1 9位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 ファジアーノ岡山</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="3">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">アビスパ福岡</span><span class="po">3.30</span><span class="ptag up">波乱</span><span class="pvt">モデル30% / 投票23%<span class="ana">穴60</span></span><span class="pp">30%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.40</span><span class="ptag dr">引分</span><span class="pvt">モデル29% / 投票26%<span class="ana">穴54</span></span><span class="pp">29%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">ファジアーノ岡山</span><span class="po">2.48</span><span class="ptag fm">順当</span><span class="pvt">モデル40% / 投票51%<span class="ana">穴42</span></span><span class="pp">40%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票23% 穴<b>60</b> ／ 0: 投票26% 穴<b>54</b> ／ 2: 投票51% 穴<b>42</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:30%"></i></div><span class="pv">30%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:29%"></i></div><span class="pv">29%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:40%"></i></div><span class="pv">40%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:22%"></i></div><span class="pv">22%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:26%"></i></div><span class="pv">26%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:51%"></i></div><span class="pv">51%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">アビスパ福岡</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-l">×</i><i class="f-l">×</i></span><span class="tsrate">HOME勝率 <b>34%</b></span><span class="tssit">波乱勝率 <b>28%</b></span></div>
-<div class="tsrow"><span class="tsname">ファジアーノ岡山</span><span class="tsform"><i class="f-l">×</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-l">×</i></span><span class="tsrate">AWAY勝率 <b>28%</b></span><span class="tssit">順当勝率 <b>38%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイファジアーノ岡山がやや優勢(推定40%)</li><li>順位 J1 18位 vs J1 9位</li></ul>
-</div>
-</article>
-<article class="card" data-no="4">
-<div class="cardtop">
-<div class="chd"><span class="no">第4試合</span><span class="date">10/11(日)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">ジェフユナイテッド千葉</span><span class="rk">J1 20位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">V・ファーレン長崎</span><span class="rk">J1 15位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 V・ファーレン長崎</b><em>トリプル</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="4">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">ジェフユナイテッド千葉</span><span class="po">2.97</span><span class="ptag ev">均衡</span><span class="pvt">モデル34% / 投票30%<span class="ana">穴55</span></span><span class="pp">34%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.22</span><span class="ptag dr">引分</span><span class="pvt">モデル31% / 投票23%<span class="ana">穴62</span></span><span class="pp">31%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">V・ファーレン長崎</span><span class="po">2.84</span><span class="ptag ev">均衡</span><span class="pvt">モデル35% / 投票48%<span class="ana">穴39</span></span><span class="pp">35%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票30% 穴<b>55</b> ／ 0: 投票23% 穴<b>62</b> ／ 2: 投票48% 穴<b>39</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:34%"></i></div><span class="pv">34%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:31%"></i></div><span class="pv">31%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:35%"></i></div><span class="pv">35%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:29%"></i></div><span class="pv">29%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:23%"></i></div><span class="pv">23%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:48%"></i></div><span class="pv">48%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">ジェフユナイテッド千葉</span><span class="tsform"><i class="f-l">×</i><i class="f-d">△</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-l">×</i></span><span class="tsrate">HOME勝率 <b>25%</b></span><span class="tssit">均衡勝率 <b>6%</b></span></div>
-<div class="tsrow"><span class="tsname">V・ファーレン長崎</span><span class="tsform"><i class="f-d">△</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-l">×</i></span><span class="tsrate">AWAY勝率 <b>25%</b></span><span class="tssit">均衡勝率 <b>36%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイV・ファーレン長崎がやや優勢(推定35%)</li><li>順位 J1 20位 vs J1 15位</li></ul>
-</div>
-</article>
-<article class="card" data-no="5">
-<div class="cardtop">
-<div class="chd"><span class="no">第5試合</span><span class="date">10/11(日)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">水戸ホーリーホック</span><span class="rk">J1 13位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">清水エスパルス</span><span class="rk">J1 12位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 清水エスパルス</b><em>トリプル</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="5">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">水戸ホーリーホック</span><span class="po">2.83</span><span class="ptag ev">均衡</span><span class="pvt">モデル35% / 投票34%<span class="ana">穴52</span></span><span class="pp">35%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.66</span><span class="ptag dr">引分</span><span class="pvt">モデル27% / 投票28%<span class="ana">穴49</span></span><span class="pp">27%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">清水エスパルス</span><span class="po">2.67</span><span class="ptag ev">均衡</span><span class="pvt">モデル37% / 投票38%<span class="ana">穴49</span></span><span class="pp">37%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票34% 穴<b>52</b> ／ 0: 投票28% 穴<b>49</b> ／ 2: 投票38% 穴<b>49</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:35%"></i></div><span class="pv">35%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:27%"></i></div><span class="pv">27%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:38%"></i></div><span class="pv">38%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:34%"></i></div><span class="pv">34%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:28%"></i></div><span class="pv">28%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:38%"></i></div><span class="pv">38%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">水戸ホーリーホック</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-w">●</i><i class="f-d">△</i></span><span class="tsrate">HOME勝率 <b>23%</b></span><span class="tssit">均衡勝率 <b>17%</b></span></div>
-<div class="tsrow"><span class="tsname">清水エスパルス</span><span class="tsform"><i class="f-w">●</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-l">×</i></span><span class="tsrate">AWAY勝率 <b>27%</b></span><span class="tssit">均衡勝率 <b>29%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイ清水エスパルスがやや優勢(推定38%)</li><li>順位 J1 13位 vs J1 12位</li></ul>
-</div>
-</article>
-<article class="card" data-no="6">
-<div class="cardtop">
-<div class="chd"><span class="no">第6試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">京都サンガF.C.</span><span class="rk">J1 14位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">FC町田ゼルビア</span><span class="rk">J1 4位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 FC町田ゼルビア</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="6">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">京都サンガF.C.</span><span class="po">3.45</span><span class="ptag up">波乱</span><span class="pvt">モデル29% / 投票19%<span class="ana">穴65</span></span><span class="pp">29%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.45</span><span class="ptag dr">引分</span><span class="pvt">モデル29% / 投票20%<span class="ana">穴64</span></span><span class="pp">29%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">FC町田ゼルビア</span><span class="po">2.38</span><span class="ptag fm">順当</span><span class="pvt">モデル42% / 投票61%<span class="ana">穴36</span></span><span class="pp">42%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票19% 穴<b>65</b> ／ 0: 投票20% 穴<b>64</b> ／ 2: 投票61% 穴<b>36</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:29%"></i></div><span class="pv">29%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:29%"></i></div><span class="pv">29%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:42%"></i></div><span class="pv">42%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:19%"></i></div><span class="pv">19%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:19%"></i></div><span class="pv">19%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:62%"></i></div><span class="pv">62%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">京都サンガF.C.</span><span class="tsform"><i class="f-w">●</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-w">●</i></span><span class="tsrate">HOME勝率 <b>36%</b></span><span class="tssit">波乱勝率 <b>29%</b></span></div>
-<div class="tsrow"><span class="tsname">FC町田ゼルビア</span><span class="tsform"><i class="f-l">×</i><i class="f-d">△</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-d">△</i></span><span class="tsrate">AWAY勝率 <b>49%</b></span><span class="tssit">順当勝率 <b>54%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイFC町田ゼルビアがやや優勢(推定42%)</li><li>順位 J1 14位 vs J1 4位</li></ul>
-</div>
-</article>
-<article class="card" data-no="7">
-<div class="cardtop">
-<div class="chd"><span class="no">第7試合</span><span class="date">10/11(日)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">東京ヴェルディ</span><span class="rk">J1 19位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">サンフレッチェ広島</span><span class="rk">J1 3位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 サンフレッチェ広島</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="7">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">東京ヴェルディ</span><span class="po">3.79</span><span class="ptag up">波乱</span><span class="pvt">モデル26% / 投票13%<span class="ana hot">◆穴77</span></span><span class="pp">26%<span class="ana hot">◆</span></span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.52</span><span class="ptag dr">引分</span><span class="pvt">モデル28% / 投票13%<span class="ana hot">◆穴79</span></span><span class="pp">28%<span class="ana hot">◆</span></span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">サンフレッチェ広島</span><span class="po">2.21</span><span class="ptag fm">順当</span><span class="pvt">モデル45% / 投票75%<span class="ana">穴32</span></span><span class="pp">45%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票13% 穴<b>77</b> ／ 0: 投票13% 穴<b>79</b> ／ 2: 投票75% 穴<b>32</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:26%"></i></div><span class="pv">26%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:28%"></i></div><span class="pv">28%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:45%"></i></div><span class="pv">45%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:12%"></i></div><span class="pv">12%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:13%"></i></div><span class="pv">13%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:75%"></i></div><span class="pv">75%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">東京ヴェルディ</span><span class="tsform"><i class="f-l">×</i><i class="f-d">△</i><i class="f-d">△</i><i class="f-l">×</i><i class="f-l">×</i></span><span class="tsrate">HOME勝率 <b>37%</b></span><span class="tssit">波乱勝率 <b>23%</b></span></div>
-<div class="tsrow"><span class="tsname">サンフレッチェ広島</span><span class="tsform"><i class="f-w">●</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-w">●</i><i class="f-d">△</i></span><span class="tsrate">AWAY勝率 <b>41%</b></span><span class="tssit">順当勝率 <b>48%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイサンフレッチェ広島がやや優勢(推定45%)</li><li>順位 J1 19位 vs J1 3位</li></ul>
-</div>
-</article>
-<article class="card" data-no="8">
-<div class="cardtop">
-<div class="chd"><span class="no">第8試合</span><span class="date">10/11(日)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm fav"><span class="nm">川崎フロンターレ</span><span class="rk">J1 7位</span></div>
-<span class="vs">vs</span>
-<div class="tm"><span class="nm">名古屋グランパス</span><span class="rk">J1 17位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>1 川崎フロンターレ</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="8">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">川崎フロンターレ</span><span class="po">1.86</span><span class="ptag fm">順当</span><span class="pvt">モデル54% / 投票69%<span class="ana">穴41</span></span><span class="pp">54%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">4.00</span><span class="ptag dr">引分</span><span class="pvt">モデル25% / 投票16%<span class="ana">穴66</span></span><span class="pp">25%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">名古屋グランパス</span><span class="po">4.76</span><span class="ptag up">波乱</span><span class="pvt">モデル21% / 投票15%<span class="ana">穴63</span></span><span class="pp">21%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票69% 穴<b>41</b> ／ 0: 投票16% 穴<b>66</b> ／ 2: 投票15% 穴<b>63</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:54%"></i></div><span class="pv">54%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:25%"></i></div><span class="pv">25%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:21%"></i></div><span class="pv">21%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:69%"></i></div><span class="pv">69%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:16%"></i></div><span class="pv">16%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:15%"></i></div><span class="pv">15%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">川崎フロンターレ</span><span class="tsform"><i class="f-d">△</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-w">●</i></span><span class="tsrate">HOME勝率 <b>51%</b></span><span class="tssit">順当勝率 <b>46%</b></span></div>
-<div class="tsrow"><span class="tsname">名古屋グランパス</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-w">●</i></span><span class="tsrate">AWAY勝率 <b>27%</b></span><span class="tssit">波乱勝率 <b>32%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>ホーム川崎フロンターレが優勢(推定54%)</li><li>順位 J1 7位 vs J1 17位</li></ul>
-</div>
-</article>
-<article class="card" data-no="9">
-<div class="cardtop">
-<div class="chd"><span class="no">第9試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm fav"><span class="nm">ヴァンフォーレ甲府</span><span class="rk">J2 20位</span></div>
-<span class="vs">vs</span>
-<div class="tm"><span class="nm">栃木シティ</span><span class="rk">J2 13位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>1 ヴァンフォーレ甲府</b><em>トリプル</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="9">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">ヴァンフォーレ甲府</span><span class="po">2.73</span><span class="ptag ev">均衡</span><span class="pvt">モデル36% / 投票41%<span class="ana">穴46</span></span><span class="pp">36%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.48</span><span class="ptag dr">引分</span><span class="pvt">モデル29% / 投票25%<span class="ana">穴54</span></span><span class="pp">29%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">栃木シティ</span><span class="po">2.88</span><span class="ptag ev">均衡</span><span class="pvt">モデル35% / 投票33%<span class="ana">穴51</span></span><span class="pp">35%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票41% 穴<b>46</b> ／ 0: 投票25% 穴<b>54</b> ／ 2: 投票33% 穴<b>51</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:37%"></i></div><span class="pv">37%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:29%"></i></div><span class="pv">29%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:35%"></i></div><span class="pv">35%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:41%"></i></div><span class="pv">41%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:26%"></i></div><span class="pv">26%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:33%"></i></div><span class="pv">33%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">ヴァンフォーレ甲府</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-w">●</i></span><span class="tsrate">HOME勝率 <b>33%</b></span><span class="tssit">均衡勝率 <b>35%</b></span></div>
-<div class="tsrow"><span class="tsname">栃木シティ</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-d">△</i><i class="f-w">●</i></span><span class="tsrate">AWAY勝率 <b>40%</b></span><span class="tssit">均衡勝率 <b>38%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>ホームヴァンフォーレ甲府がやや優勢(推定37%)</li><li>順位 J2 20位 vs J2 13位</li></ul>
-</div>
-</article>
-<article class="card" data-no="10">
-<div class="cardtop">
-<div class="chd"><span class="no">第10試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">サガン鳥栖</span><span class="rk">J2 17位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">藤枝MYFC</span><span class="rk">J2 7位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 藤枝MYFC</b><em>トリプル</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="10">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">サガン鳥栖</span><span class="po">2.87</span><span class="ptag ev">均衡</span><span class="pvt">モデル35% / 投票34%<span class="ana">穴51</span></span><span class="pp">35%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.57</span><span class="ptag dr">引分</span><span class="pvt">モデル28% / 投票28%<span class="ana">穴50</span></span><span class="pp">28%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">藤枝MYFC</span><span class="po">2.69</span><span class="ptag ev">均衡</span><span class="pvt">モデル37% / 投票38%<span class="ana">穴49</span></span><span class="pp">37%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票34% 穴<b>51</b> ／ 0: 投票28% 穴<b>50</b> ／ 2: 投票38% 穴<b>49</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:35%"></i></div><span class="pv">35%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:28%"></i></div><span class="pv">28%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:37%"></i></div><span class="pv">37%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:34%"></i></div><span class="pv">34%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:28%"></i></div><span class="pv">28%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:38%"></i></div><span class="pv">38%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">サガン鳥栖</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-w">●</i></span><span class="tsrate">HOME勝率 <b>48%</b></span><span class="tssit">均衡勝率 <b>33%</b></span></div>
-<div class="tsrow"><span class="tsname">藤枝MYFC</span><span class="tsform"><i class="f-d">△</i><i class="f-d">△</i><i class="f-d">△</i><i class="f-l">×</i><i class="f-d">△</i></span><span class="tsrate">AWAY勝率 <b>29%</b></span><span class="tssit">均衡勝率 <b>36%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイ藤枝MYFCがやや優勢(推定37%)</li><li>順位 J2 17位 vs J2 7位</li></ul>
-</div>
-</article>
-<article class="card" data-no="11">
-<div class="cardtop">
-<div class="chd"><span class="no">第11試合</span><span class="date">10/10(土)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm fav"><span class="nm">徳島ヴォルティス</span><span class="rk">J2 9位</span></div>
-<span class="vs">vs</span>
-<div class="tm"><span class="nm">FC今治</span><span class="rk">J2 19位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>1 徳島ヴォルティス</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="11">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">徳島ヴォルティス</span><span class="po">1.90</span><span class="ptag fm">順当</span><span class="pvt">モデル52% / 投票65%<span class="ana">穴42</span></span><span class="pp">52%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">4.83</span><span class="ptag dr">引分</span><span class="pvt">モデル21% / 投票18%<span class="ana">穴56</span></span><span class="pp">21%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">FC今治</span><span class="po">3.75</span><span class="ptag up">波乱</span><span class="pvt">モデル27% / 投票18%<span class="ana">穴65</span></span><span class="pp">27%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票65% 穴<b>42</b> ／ 0: 投票18% 穴<b>56</b> ／ 2: 投票18% 穴<b>65</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:53%"></i></div><span class="pv">53%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:21%"></i></div><span class="pv">21%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:27%"></i></div><span class="pv">27%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:65%"></i></div><span class="pv">65%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:18%"></i></div><span class="pv">18%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:17%"></i></div><span class="pv">17%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">徳島ヴォルティス</span><span class="tsform"><i class="f-l">×</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-w">●</i></span><span class="tsrate">HOME勝率 <b>38%</b></span><span class="tssit">順当勝率 <b>46%</b></span></div>
-<div class="tsrow"><span class="tsname">FC今治</span><span class="tsform"><i class="f-w">●</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-w">●</i><i class="f-d">△</i></span><span class="tsrate">AWAY勝率 <b>42%</b></span><span class="tssit">波乱勝率 <b>30%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>ホーム徳島ヴォルティスが優勢(推定53%)</li><li>順位 J2 9位 vs J2 19位</li></ul>
-</div>
-</article>
-<article class="card" data-no="12">
-<div class="cardtop">
-<div class="chd"><span class="no">第12試合</span><span class="date">10/11(日)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">モンテディオ山形</span><span class="rk">J2 10位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">ベガルタ仙台</span><span class="rk">J2 1位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 ベガルタ仙台</b><em>単</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="12">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">モンテディオ山形</span><span class="po">5.75</span><span class="ptag up">波乱</span><span class="pvt">モデル17% / 投票17%<span class="ana">穴50</span></span><span class="pp">17%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.92</span><span class="ptag dr">引分</span><span class="pvt">モデル26% / 投票17%<span class="ana">穴64</span></span><span class="pp">26%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">ベガルタ仙台</span><span class="po">1.75</span><span class="ptag fm">順当</span><span class="pvt">モデル57% / 投票65%<span class="ana">穴45</span></span><span class="pp">57%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票17% 穴<b>50</b> ／ 0: 投票17% 穴<b>64</b> ／ 2: 投票65% 穴<b>45</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:17%"></i></div><span class="pv">17%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:26%"></i></div><span class="pv">26%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:57%"></i></div><span class="pv">57%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:17%"></i></div><span class="pv">17%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:17%"></i></div><span class="pv">17%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:65%"></i></div><span class="pv">65%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">モンテディオ山形</span><span class="tsform"><i class="f-l">×</i><i class="f-w">●</i><i class="f-l">×</i><i class="f-l">×</i><i class="f-l">×</i></span><span class="tsrate">HOME勝率 <b>53%</b></span><span class="tssit">波乱勝率 <b>38%</b></span></div>
-<div class="tsrow"><span class="tsname">ベガルタ仙台</span><span class="tsform"><i class="f-w">●</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-d">△</i><i class="f-w">●</i></span><span class="tsrate">AWAY勝率 <b>42%</b></span><span class="tssit">順当勝率 <b>40%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイベガルタ仙台が優勢(推定57%)</li><li>順位 J2 10位 vs J2 1位</li></ul>
-</div>
-</article>
-<article class="card" data-no="13">
-<div class="cardtop">
-<div class="chd"><span class="no">第13試合</span><span class="date">10/11(日)</span><span class="chev">▾</span></div>
-<div class="teams">
-<div class="tm"><span class="nm">いわきFC</span><span class="rk">J2 16位</span></div>
-<span class="vs">vs</span>
-<div class="tm fav"><span class="nm">ブラウブリッツ秋田</span><span class="rk">J2 8位</span></div>
-</div>
-<div class="aimini">モデル本命 <b>2 ブラウブリッツ秋田</b><em>トリプル</em><span class="detailhint">タップで詳細</span></div>
-</div>
-<div class="picks" data-no="13">
-<div class="pickbtn" data-v="1"><b class="pm">1</b><span class="pl2">いわきFC</span><span class="po">2.87</span><span class="ptag ev">均衡</span><span class="pvt">モデル35% / 投票37%<span class="ana">穴48</span></span><span class="pp">35%</span></div>
-<div class="pickbtn" data-v="0"><b class="pm">0</b><span class="pl2">引き分け</span><span class="po">3.42</span><span class="ptag dr">引分</span><span class="pvt">モデル29% / 投票27%<span class="ana">穴53</span></span><span class="pp">29%</span></div>
-<div class="pickbtn" data-v="2"><b class="pm">2</b><span class="pl2">ブラウブリッツ秋田</span><span class="po">2.78</span><span class="ptag ev">均衡</span><span class="pvt">モデル36% / 投票36%<span class="ana">穴50</span></span><span class="pp">36%</span></div>
-</div>
-<div class="cdetail" hidden=""><div class="anarow">1: 投票37% 穴<b>48</b> ／ 0: 投票27% 穴<b>53</b> ／ 2: 投票36% 穴<b>50</b></div>
-<div class="bars">
-<div class="pbar"><span class="pl">1 ホーム</span><div class="ptrack"><i class="bh" style="width:35%"></i></div><span class="pv">35%</span></div>
-<div class="pbar"><span class="pl">0 引分</span><div class="ptrack"><i class="bd" style="width:29%"></i></div><span class="pv">29%</span></div>
-<div class="pbar"><span class="pl">2 アウェイ</span><div class="ptrack"><i class="ba" style="width:36%"></i></div><span class="pv">36%</span></div>
-</div>
-<div class="bars vbars"><div class="pbar"><span class="pl">投票 1</span><div class="ptrack"><i class="bh" style="width:37%"></i></div><span class="pv">37%</span></div><div class="pbar"><span class="pl">投票 0</span><div class="ptrack"><i class="bd" style="width:27%"></i></div><span class="pv">27%</span></div><div class="pbar"><span class="pl">投票 2</span><div class="ptrack"><i class="ba" style="width:36%"></i></div><span class="pv">36%</span></div></div>
-<div class="tstats">
-<div class="tsrow"><span class="tsname">いわきFC</span><span class="tsform"><i class="f-l">×</i><i class="f-l">×</i><i class="f-w">●</i><i class="f-w">●</i><i class="f-l">×</i></span><span class="tsrate">HOME勝率 <b>33%</b></span><span class="tssit">均衡勝率 <b>37%</b></span></div>
-<div class="tsrow"><span class="tsname">ブラウブリッツ秋田</span><span class="tsform"><i class="f-w">●</i><i class="f-d">△</i><i class="f-d">△</i><i class="f-w">●</i><i class="f-d">△</i></span><span class="tsrate">AWAY勝率 <b>37%</b></span><span class="tssit">均衡勝率 <b>33%</b></span></div>
-<div class="tsleg">勝率＝今のリーグでの2022〜2026年の試合（90分勝利・詳しくは<a href="../db.html">データベース</a>）。マーク＝直近5試合（新しい→古い）：<i class="f-w">●</i>勝 <i class="f-d">△</i>分 <i class="f-l">×</i>負</div>
-</div>
-<ul class="cmtlist"><li>アウェイブラウブリッツ秋田がやや優勢(推定36%)</li><li>順位 J2 16位 vs J2 8位</li></ul>
-</div>
-</article></section>
-<details class="more"><summary>ⓘ 詳しく</summary><p class="pagenote">予想%・オッズは順位・勝点(2026/27第8節終了時点)からの推定値(今節独自モデル予想が未掲載のため)。実測ではないので目安。順位・勝点は事実。全試合が同一ディビジョン対決(No1-2=J1, No3-11=J2, No12-13=J3)なのでホーム+順位差が基準。出場停止は各自直前確認を。</p></details>
-<script>window.__AI_PICKS__={"1":["2","1","0"],"2":["1"],"3":["2"],"4":["2","1","0"],"5":["2","1","0"],"6":["2"],"7":["2"],"8":["1"],"9":["1","2","0"],"10":["2","1","0"],"11":["1"],"12":["2"],"13":["2","1","0"]};window.__AI_FILTER__={"minUpset":0,"maxUpset":0,"minDraw":1,"maxDraw":5,"minGM":41,"maxGM":100};window.__MATCHES__=[{"no":1,"hn":"セレッソ大阪","an":"横浜F・マリノス","hr":11,"ar":6,"hp":11,"ap":14,"date":"10/10(土)","ph":33,"pd":29,"pa":38},{"no":2,"hn":"FC東京","an":"浦和レッズ","hr":5,"ar":10,"hp":17,"ap":12,"date":"10/10(土)","ph":44,"pd":25,"pa":31},{"no":3,"hn":"アビスパ福岡","an":"ファジアーノ岡山","hr":18,"ar":9,"hp":4,"ap":13,"date":"10/10(土)","ph":30,"pd":29,"pa":40},{"no":4,"hn":"ジェフユナイテッド千葉","an":"V・ファーレン長崎","hr":20,"ar":15,"hp":4,"ap":8,"date":"10/11(日)","ph":34,"pd":31,"pa":35},{"no":5,"hn":"水戸ホーリーホック","an":"清水エスパルス","hr":13,"ar":12,"hp":9,"ap":10,"date":"10/11(日)","ph":35,"pd":27,"pa":38},{"no":6,"hn":"京都サンガF.C.","an":"FC町田ゼルビア","hr":14,"ar":4,"hp":8,"ap":17,"date":"10/10(土)","ph":29,"pd":29,"pa":42},{"no":7,"hn":"東京ヴェルディ","an":"サンフレッチェ広島","hr":19,"ar":3,"hp":4,"ap":17,"date":"10/11(日)","ph":26,"pd":28,"pa":45},{"no":8,"hn":"川崎フロンターレ","an":"名古屋グランパス","hr":7,"ar":17,"hp":13,"ap":6,"date":"10/11(日)","ph":54,"pd":25,"pa":21},{"no":9,"hn":"ヴァンフォーレ甲府","an":"栃木シティ","hr":20,"ar":13,"hp":7,"ap":10,"date":"10/10(土)","ph":37,"pd":29,"pa":35},{"no":10,"hn":"サガン鳥栖","an":"藤枝MYFC","hr":17,"ar":7,"hp":8,"ap":13,"date":"10/10(土)","ph":35,"pd":28,"pa":37},{"no":11,"hn":"徳島ヴォルティス","an":"FC今治","hr":9,"ar":19,"hp":13,"ap":7,"date":"10/10(土)","ph":53,"pd":21,"pa":27},{"no":12,"hn":"モンテディオ山形","an":"ベガルタ仙台","hr":10,"ar":1,"hp":12,"ap":20,"date":"10/11(日)","ph":17,"pd":26,"pa":57},{"no":13,"hn":"いわきFC","an":"ブラウブリッツ秋田","hr":16,"ar":8,"hp":9,"ap":13,"date":"10/11(日)","ph":35,"pd":29,"pa":36}];window.__ROUND__=1660;</script></main>
-<footer class="foot">
-<div class="disc"><span class="short">非公式のtoto予想サイトです。的中は保証しません。<b>19歳未満の購入は法律で禁止</b>。<a href="../about.html">about・免責</a></span><span class="full">
-<b>totoCast</b> は独自アルゴリズムによる非公式のサッカーtoto予想・情報提供サイトです。公式（スポーツくじ公式／Jリーグ）とは一切関係ありません。
-    掲載の予想・確率・指数は独自モデルによる推計であり、的中を保証するものではありません。くじの購入は自己責任で。
-    <b>19歳未満の方の投票券の購入は法律で禁止されています。</b>
-</span></div>
-<div class="cp">© 2026 totoCast</div>
+<p class="note" style="margin-top:20px">速報版 2026/10/05 09:26 公開 · 最初の試合の前日に最新の投票率で確定版に更新します<br>
+投票率は 10/05 15:11 時点（販売中のため変動）· ◆＝ねらい目（人気のわりに起きやすい目・穴目指数70以上）</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>非公式サイト（日本スポーツ振興センター・Jリーグとは無関係）・的中は保証しません・<strong>19歳未満の購入は法律で禁止</strong></span>
+    <span>出典：投票率・当せん金＝<a href="https://www.toto-dream.com/" target="_blank" rel="noopener">スポーツくじオフィシャルサイト</a>／試合データ＝<a href="https://data.j-league.or.jp/" target="_blank" rel="noopener">Jリーグデータサイト</a>・totoは日本スポーツ振興センターの登録商標です</span>
+    <span><a href="../about.html">about・免責</a>　© 2026 totoCast</span>
+  </div>
 </footer>
-<script src="../app.js"></script></body>
+</body>
 </html>

@@ -1,73 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>フィルタの見方・買い方ガイド | totoCast</title>
-<meta content="totoの買い方を絞り込むフィルタ(波乱・引分・順当・大波乱・モデル勝率)の意味と使い方。実データに基づくプリセットつき。" name="description"/>
-<meta content="フィルタの見方・買い方ガイド | totoCast" property="og:title"/>
-<meta content="totoの買い方を絞り込むフィルタ(波乱・引分・順当・大波乱・モデル勝率)の意味と使い方。実データに基づくプリセットつき。" property="og:description"/>
-<meta content="website" property="og:type"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Noto+Sans+JP:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="style.css" rel="stylesheet"/>
-<style>.steps{padding-left:20px;margin:8px 0}.steps li{margin:8px 0;line-height:1.6}</style><style id="simplecss">/* === simple mode === */
-body{font-size:15px}
-.hero{padding:22px 0 8px}.hero h1{font-size:26px;line-height:1.25;margin:4px 0}
-.hero .sub{display:none}
-details.more{margin:6px 0 12px}details.more>summary{cursor:pointer;color:var(--mut);font-size:12.5px;list-style:none;display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
-details.more>summary::-webkit-details-marker{display:none}details.more[open]>summary{margin-bottom:6px}
-details.more .pagenote,details.more .livenote,details.more .pubstamp{margin:6px 0}
-details.tbl>summary{font-weight:700;color:var(--cy)}
-.foot .disc{font-size:11px}.foot .disc .full{display:none}
-.pickbtn .po,.pickbtn .ptag,.pickbtn .pvt{display:none}
-.pickbtn .pp{display:block;font:700 13px "JetBrains Mono",monospace;color:var(--tx);margin-top:2px}
-.pickbtn .pp .ana{margin-left:4px}
-.aimini .detailhint{display:none}
-.card .teams{display:none}.card .cardtop{padding-bottom:0}.card .chd{margin-bottom:2px}.card .aimini{margin-top:0}
-.anarow{font-size:12px;color:var(--mut);margin:6px 0 2px}.anarow b{color:var(--tx)}
-.mini .mm{display:none}
-.ntile .ds{display:none}.ntile .em{font-size:22px}.ntile .tt{font-size:15px}
-@media(max-width:760px){.stats{grid-template-columns:repeat(3,1fr)!important;gap:8px}.stats .tile{padding:12px 8px;text-align:center}.stats .tn{font-size:24px}.stats .tl{font-size:11px}}.ntile{padding:14px}.stats .tile em{display:none}.rbig .rdate{display:none}
-@media(max-width:760px){.brand .tag{display:none}}
-.scards{grid-template-columns:1fr 1fr!important}
-.simplestat{display:flex;gap:10px;margin:14px 0}.simplestat .tile{flex:1}
-.nav nav a{padding:6px 12px}
-@media(max-width:760px){.hero h1{font-size:22px}.charts{gap:10px}}
-</style></head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使い方ガイド | totoCast</title>
+<meta name="description" content="totoCastの使い方。目の選び方・フィルタ・用語をやさしく解説。">
+<meta name="theme-color" content="#F4F5F1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
 <body>
-<header class="nav">
-<a class="brand" href="index.html"><span class="logo">toto<b>Cast</b></span><span class="tag">サッカーtoto 独自モデル予想 &amp; 検証データ</span></a>
-<nav><a class="" href="index.html">ホーム</a><a class="" href="yosou/1660.html">予想</a><a class="" href="jisseki.html">統計</a><a class="" href="db.html">データベース</a><a class="" href="news.html">ニュース</a><a class="" href="archive.html">アーカイブ</a><a class="on" href="guide.html">ガイド</a><a class="" href="about.html">about</a></nav>
+<header class="site-header">
+  <a class="logo" href="index.html">toto<span>Cast</span></a>
+  <nav class="nav" aria-label="メイン"><a href="yosou/1660.html">予想</a><a href="jisseki.html">統計</a><a href="db.html">データベース</a><a href="news.html">ニュース</a><a href="archive.html">アーカイブ</a><a href="guide.html" aria-current="page">ガイド</a><a href="about.html">about</a></nav>
 </header>
-<main>
-<section class="hero sm"><div class="eyebrow">ガイド</div><h1>使い方は3ステップ</h1></section>
-<section class="prose">
-<ol class="steps">
-<li><b>目を選ぶ</b>　各試合で 1（ホーム勝ち）・0（引分）・2（アウェイ勝ち）をタップ。迷う試合は2つ・3つ選んでOK。</li>
-<li><b>フィルタで絞る</b>　「起こりにくい組合せ」を外して、買う通り数を減らす。</li>
-<li><b>買目計算</b>　残った組合せを、重複なしのマルチ券に自動でまとめる。</li>
-</ol>
-<p>迷ったら <b>「モデルのおすすめを入れる」</b> を押すだけ。目とフィルタが自動で入り、1万円以内に収まります。</p>
+<main class="wrap">
+<section class="page-head head-split">
+  <div><span class="eyebrow">GUIDE</span><h1 class="h1">使い方は3ステップ</h1></div>
+  <figure>
+    <div class="bubbles"><span>かんたんに説明するよ</span><span>totoって初めて！</span></div>
+    <img class="chara" src="assets/chara/dialogue_01_explain.webp" alt="分析役のキャラクターが観戦役のキャラクターに説明している" width="420" height="153" style="width:100%">
+  </figure>
 </section>
-<section class="prose">
-<h3>なぜフィルタ？</h3>
-<p>ダブル8試合で256通り（25,600円）。しかも「引分0試合」のような、まず起きない組合せまで買うことに。フィルタで<b>起きやすい範囲だけ</b>に絞れば、同じ予算で当たる見込みを高められます。</p>
-<div class="deftable">
-<div class="defrow"><span class="dk">本命寄り</span><span class="dv">波乱0〜2・引分1〜5・堅さ33%以上</span></div>
-<div class="defrow"><span class="dk">バランス</span><span class="dv">波乱0〜3・引分1〜6・堅さ30%以上</span></div>
-<div class="defrow"><span class="dk">波乱狙い</span><span class="dv">波乱1〜5・引分3〜7・堅さ35%以下</span></div>
-</div>
-<details class="more"><summary>ⓘ 詳しく</summary><p class="pagenote">用語：<b>波乱</b>＝勝点差6以上の試合で下位が勝つこと。<b>堅さ</b>＝選んだ目のモデル確率の平均（高いほど本命寄り）。<b>穴目指数</b>＝モデル確率÷投票率（50＝人気どおり、70以上で◆＝人気のわりに起きやすい）。過去の検証では、本命寄りで過去の結果の約50%、バランスで約79%、波乱狙いで約38%をカバー。絞るほど安くなる一方、範囲外の結果になると当たりません。</p></details>
+<section class="steps">
+  <div class="step"><span class="step-no">01</span><h2 class="step-title">目を選ぶ</h2><p>各試合で 1（ホーム勝ち）・0（引分）・2（アウェイ勝ち）をタップ。迷う試合は2つ・3つ選んでOK</p></div>
+  <div class="step"><span class="step-no">02</span><h2 class="step-title">フィルタで絞る</h2><p>起こりにくい組合せを外して、買う通り数を減らします</p></div>
+  <div class="step"><span class="step-no">03</span><h2 class="step-title">買目計算</h2><p>残った組合せを、重複なしのマルチ券に自動でまとめます</p></div>
+</section>
+<a class="callout" href="yosou/1660.html"><strong>迷ったら「モデルのおすすめを入れる」を押すだけ</strong><span>目とフィルタが自動で入り、1万円以内に収まります →</span></a>
+
+<section class="section split">
+  <div><h2 class="h2-lg">なぜフィルタを使うのか</h2>
+    <p>ダブル8試合だと256通り（25,600円）。しかも「引分0試合」のような、まず起きない組合せまで買うことに。起きやすい範囲だけに絞れば、同じ予算で当たる見込みを高められます</p>
+    <img class="chara" src="assets/chara/dialogue_07_chart.webp" alt="グラフを指して説明するキャラクター" width="320" height="122" style="max-width:100%"></div>
+  <div class="compare">
+    <div><span class="k-label">第1660回 おすすめの目</span><span class="big">729<small> 通り</small></span><small>72,900円</small></div>
+    <div class="dark"><span class="k-label">フィルタで絞ると</span><span class="big">52<small> 通り</small></span><small>5,200円</small></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="h2" style="margin-bottom:20px">3つのフィルタ</h2>
+  <div class="presets">
+    <div class="preset"><h3>本命寄り</h3><span class="cond">波乱0〜2 · 引分1〜5<br>堅さ33%以上</span><div class="cover"><span class="note">過去の結果をカバー</span><b>約50%</b></div></div>
+    <div class="preset rec"><h3>バランス</h3><span class="cond">波乱0〜3 · 引分1〜6<br>堅さ30%以上</span><div class="cover"><span class="note">過去の結果をカバー</span><b>約79%</b></div></div>
+    <div class="preset"><h3>波乱狙い</h3><span class="cond">波乱1〜5 · 引分3〜7<br>堅さ35%以下</span><div class="cover"><span class="note">過去の結果をカバー</span><b>約38%</b></div></div>
+  </div>
+  <p class="note">カバー率＝過去134回のうち、実際の結果がそのフィルタの範囲内だった回の割合 · 絞るほど安くなる一方、範囲外の結果になると当たりません</p>
+</section>
+
+<section class="section">
+  <h2 class="h2" style="margin-bottom:20px">用語</h2>
+  <dl class="glossary">
+    <div><dt>波乱</dt><dd>勝点差6以上の試合で、下位チームが勝つこと</dd></div>
+    <div><dt>堅さ</dt><dd>選んだ目のモデル確率の平均。高いほど本命寄り</dd></div>
+    <div><dt>穴目指数</dt><dd>モデル確率と投票率の比較。50＝人気どおり、70以上で◆（人気のわりに起きやすい）</dd></div>
+    <div><dt>マルチ</dt><dd>1試合に複数の目を選んで、まとめて購入する買い方</dd></div>
+  </dl>
 </section>
 </main>
-<footer class="foot">
-<div class="disc"><span class="short">非公式のtoto予想サイトです。的中は保証しません。<b>19歳未満の購入は法律で禁止</b>。<a href="about.html">about・免責</a></span><span class="full">
-<b>totoCast</b> は独自アルゴリズムによる非公式のサッカーtoto予想・情報提供サイトです。公式（スポーツくじ公式／Jリーグ）とは一切関係ありません。
-    掲載の予想・確率・指数は独自モデルによる推計であり、的中を保証するものではありません。くじの購入は自己責任で。
-    <b>19歳未満の方の投票券の購入は法律で禁止されています。</b>
-</span></div>
-<div class="cp">© 2026 totoCast</div>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>非公式サイト（日本スポーツ振興センター・Jリーグとは無関係）・的中は保証しません・<strong>19歳未満の購入は法律で禁止</strong></span>
+    <span>出典：投票率・当せん金＝<a href="https://www.toto-dream.com/" target="_blank" rel="noopener">スポーツくじオフィシャルサイト</a>／試合データ＝<a href="https://data.j-league.or.jp/" target="_blank" rel="noopener">Jリーグデータサイト</a>・totoは日本スポーツ振興センターの登録商標です</span>
+    <span><a href="about.html">about・免責</a>　© 2026 totoCast</span>
+  </div>
 </footer>
 </body>
 </html>

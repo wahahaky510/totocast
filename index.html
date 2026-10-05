@@ -1,80 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>totoCast | サッカーtoto 独自モデル予想と検証データ</title>
-<meta content="独自アルゴリズムによるサッカーtoto予想。全13試合の勝敗確率・モデル本命・買い目シミュレーション。モデルの検証結果もすべて公開。" name="description"/>
-<meta content="totoCast | サッカーtoto 独自モデル予想と検証データ" property="og:title"/>
-<meta content="独自アルゴリズムによるサッカーtoto予想。全13試合の勝敗確率・モデル本命・買い目シミュレーション。モデルの検証結果もすべて公開。" property="og:description"/>
-<meta content="website" property="og:type"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Noto+Sans+JP:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="style.css" rel="stylesheet"/>
-<style id="simplecss">/* === simple mode === */
-body{font-size:15px}
-.hero{padding:22px 0 8px}.hero h1{font-size:26px;line-height:1.25;margin:4px 0}
-.hero .sub{display:none}
-details.more{margin:6px 0 12px}details.more>summary{cursor:pointer;color:var(--mut);font-size:12.5px;list-style:none;display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
-details.more>summary::-webkit-details-marker{display:none}details.more[open]>summary{margin-bottom:6px}
-details.more .pagenote,details.more .livenote,details.more .pubstamp{margin:6px 0}
-details.tbl>summary{font-weight:700;color:var(--cy)}
-.foot .disc{font-size:11px}.foot .disc .full{display:none}
-.pickbtn .po,.pickbtn .ptag,.pickbtn .pvt{display:none}
-.pickbtn .pp{display:block;font:700 13px "JetBrains Mono",monospace;color:var(--tx);margin-top:2px}
-.pickbtn .pp .ana{margin-left:4px}
-.aimini .detailhint{display:none}
-.card .teams{display:none}.card .cardtop{padding-bottom:0}.card .chd{margin-bottom:2px}.card .aimini{margin-top:0}
-.anarow{font-size:12px;color:var(--mut);margin:6px 0 2px}.anarow b{color:var(--tx)}
-.mini .mm{display:none}
-.ntile .ds{display:none}.ntile .em{font-size:22px}.ntile .tt{font-size:15px}
-@media(max-width:760px){.stats{grid-template-columns:repeat(3,1fr)!important;gap:8px}.stats .tile{padding:12px 8px;text-align:center}.stats .tn{font-size:24px}.stats .tl{font-size:11px}}.ntile{padding:14px}.stats .tile em{display:none}.rbig .rdate{display:none}
-@media(max-width:760px){.brand .tag{display:none}}
-.scards{grid-template-columns:1fr 1fr!important}
-.simplestat{display:flex;gap:10px;margin:14px 0}.simplestat .tile{flex:1}
-.nav nav a{padding:6px 12px}
-@media(max-width:760px){.hero h1{font-size:22px}.charts{gap:10px}}
-</style></head>
+<meta name="description" content="過去5年の試合結果・投票率・オッズから独自モデルがtoto全13試合の勝敗確率を予想。成績はすべて公開。">
+<meta name="theme-color" content="#F4F5F1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
 <body>
-<header class="nav">
-<a class="brand" href="index.html"><span class="logo">toto<b>Cast</b></span><span class="tag">サッカーtoto 独自モデル予想 &amp; 検証データ</span></a>
-<nav><a class="on" href="index.html">ホーム</a><a class="" href="yosou/1660.html">予想</a><a class="" href="jisseki.html">統計</a><a class="" href="db.html">データベース</a><a class="" href="news.html">ニュース</a><a class="" href="archive.html">アーカイブ</a><a class="" href="guide.html">ガイド</a><a class="" href="about.html">about</a></nav>
+<header class="site-header">
+  <a class="logo" href="index.html">toto<span>Cast</span></a>
+  <nav class="nav" aria-label="メイン"><a href="yosou/1660.html">予想</a><a href="jisseki.html">統計</a><a href="db.html">データベース</a><a href="news.html">ニュース</a><a href="archive.html">アーカイブ</a><a href="guide.html">ガイド</a><a href="about.html">about</a></nav>
 </header>
 <main>
-<section class="hero home">
-<div class="eyebrow">独自モデル · サッカー toto 予想</div>
-<h1>データで読む、<span class="cy">toto</span>の13試合。</h1>
-<p class="sub">過去5年の試合結果・toto投票率・オッズから独自モデルが勝敗確率を算出。おすすめの買い目を毎回公開し、<b>成績もすべて見せます。</b></p>
-<div class="cta"><a class="primary" href="yosou/1660.html">第1660回の予想を見る →</a><a href="jisseki.html">成績を見る</a></div>
+<section class="hero">
+  <svg class="hero-pitch" aria-hidden="true" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#DDE4DC" stroke-width="2">
+    <rect x="40" y="40" width="1120" height="620"/><line x1="600" y1="40" x2="600" y2="660"/><circle cx="600" cy="350" r="110"/>
+    <rect x="40" y="200" width="150" height="300"/><rect x="1010" y="200" width="150" height="300"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">MATCHDAY · ROUND 1660</span>
+      <h1 class="hero-title">データで読む<br>totoの13試合</h1>
+      <p class="hero-lead">独自モデルが全試合の勝敗確率を予想</p>
+      <div class="hero-actions">
+        <a class="btn" href="yosou/1660.html">今週の予想を見る<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span class="pill pill-warn" data-deadline="2026-10-10T13:50:00+09:00" data-open-only><span class="dot"></span>締切まであと<span data-countdown data-format="dh">–</span></span>
+      </div>
+    </div>
+    <div class="ticket-wrap">
+    <img class="chara ticket-peek" src="assets/chara/B_02_smiling.webp" alt="" width="104" height="80">
+    <a class="ticket" href="yosou/1660.html">
+      <div class="ticket-head">
+        <div><div style="font-size:12px;color:#5A6660">モデル本命</div><div class="ticket-round">第1660回</div></div>
+        <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+          <span class="tag tag-warn">荒れ気味</span><span style="font-size:12px;color:#5A6660">10/10(土)〜10/11(日)</span>
+        </div>
+      </div>
+      <div class="ticket-rows"><div class="ticket-row"><span class="no">1</span><span class="teams">C大阪 <span style="color:#8A958F">vs</span> 横浜FM</span><span class="marks"><span class="mark">1</span><span class="mark">0</span><span class="mark on">2</span></span></div><div class="ticket-row"><span class="no">2</span><span class="teams">FC東京 <span style="color:#8A958F">vs</span> 浦和</span><span class="marks"><span class="mark on">1</span><span class="mark">0</span><span class="mark">2</span></span></div><div class="ticket-row"><span class="no">3</span><span class="teams">福岡 <span style="color:#8A958F">vs</span> 岡山</span><span class="marks"><span class="mark">1</span><span class="mark">0</span><span class="mark on">2</span></span></div><div class="ticket-row"><span class="no">4</span><span class="teams">千葉 <span style="color:#8A958F">vs</span> 長崎</span><span class="marks"><span class="mark">1</span><span class="mark">0</span><span class="mark on">2</span></span></div><div class="ticket-row"><span class="no">5</span><span class="teams">水戸 <span style="color:#8A958F">vs</span> 清水</span><span class="marks"><span class="mark">1</span><span class="mark">0</span><span class="mark on">2</span></span></div><div class="ticket-row"><span class="no">6</span><span class="teams">京都 <span style="color:#8A958F">vs</span> 町田</span><span class="marks"><span class="mark">1</span><span class="mark">0</span><span class="mark on">2</span></span></div></div>
+      <div class="ticket-foot">
+        <div class="ticket-ghost" aria-hidden="true"><span class="num" style="font-size:18px">7</span><i></i><b></b></div>
+        <span class="ticket-cta">残り7試合を見る →</span>
+      </div>
+    </a>
+    </div>
+  </div>
 </section>
-<section class="navtiles">
-<a class="ntile" href="yosou/1660.html"><span class="em">📊</span><span class="tt">今週の予想</span><span class="ds">全13試合の確率・おすすめの買い目</span><span class="arw">見る →</span></a>
-<a class="ntile" href="yosou/1658.html"><span class="em">🏁</span><span class="tt">前回結果</span><span class="ds">第1658回の結果</span><span class="arw">見る →</span></a>
-<a class="ntile" href="news.html"><span class="em">📰</span><span class="tt">ニュース</span><span class="ds">出場停止・負傷・監督交代</span><span class="arw">見る →</span></a>
-<a class="ntile" href="jisseki.html"><span class="em">📈</span><span class="tt">統計</span><span class="ds">引分・波乱・当せん金の統計</span><span class="arw">見る →</span></a>
-<a class="ntile" href="db.html"><span class="em">📋</span><span class="tt">データベース</span><span class="ds">順位表・チーム統計</span><span class="arw">見る →</span></a>
-<a class="ntile" href="guide.html"><span class="em">🧭</span><span class="tt">ガイド</span><span class="ds">使い方とフィルタ</span><span class="arw">見る →</span></a>
+
+<section class="band" aria-label="今回の情報">
+  <div class="wrap">
+    <div class="stat" data-deadline="2026-10-10T13:50:00+09:00"><span class="stat-label">販売締切まで</span><span class="stat-num cd" data-countdown data-open-only>–</span><span class="stat-num" data-closed-only hidden>販売終了</span><span class="stat-sub">10/10(土) 13:50 締切（ネット）</span></div>
+    <div class="stat"><span class="stat-label">おすすめの目 的中率<small>（検証46回）</small></span><span class="stat-num lime">73%</span></div>
+    <div class="stat"><span class="stat-label">キャリーオーバー</span><span class="stat-num">0<small>円</small></span><span class="stat-sub">第1658回 終了時点</span></div>
+    <div class="stat"><span class="stat-label">前回の1等</span><span class="stat-num">1,478<small>万円</small></span><span class="stat-sub">第1658回 · 2口</span></div>
+  </div>
 </section>
-<section class="stats">
-<div class="tile"><span class="tn">73%</span><span class="tl">おすすめの目 的中率<em>予算1万円・46回で検証</em></span></div>
-<div class="tile"><span class="tn">47</span><span class="tl">予想・検証した回<em>全結果を公開</em></span></div>
-<div class="tile"><span class="tn">13</span><span class="tl">毎回フル予想<em>1試合も隠さない</em></span></div>
-</section>
-<section class="latest">
-<h2>最新の予想</h2>
-<a class="rbig" href="yosou/1660.html"><span class="rno">第1660回</span><span class="rdate">全13試合</span><span class="go">予想を見る →</span></a>
-</section>
-<section class="latest">
-<h2>最近の結果</h2>
-<div class="mini"><a class="mrow" href="yosou/1658.html"><span>第1658回</span><span class="mm">公開予想</span><span class="mh">公開予想 8/13</span></a><a class="mrow" href="yosou/1656.html"><span>第1656回</span><span class="mm">検証</span><span class="mh">検証 10/13</span></a><a class="mrow" href="yosou/1654.html"><span>第1654回</span><span class="mm">検証</span><span class="mh">検証 11/13</span></a><a class="mrow" href="yosou/1653.html"><span>第1653回</span><span class="mm">検証</span><span class="mh">検証 9/13</span></a><a class="mrow" href="yosou/1650.html"><span>第1650回</span><span class="mm">検証</span><span class="mh">検証 7/13</span></a></div>
-</section></main>
-<footer class="foot">
-<div class="disc"><span class="short">非公式のtoto予想サイトです。的中は保証しません。<b>19歳未満の購入は法律で禁止</b>。<a href="about.html">about・免責</a></span><span class="full">
-<b>totoCast</b> は独自アルゴリズムによる非公式のサッカーtoto予想・情報提供サイトです。公式（スポーツくじ公式／Jリーグ）とは一切関係ありません。
-    掲載の予想・確率・指数は独自モデルによる推計であり、的中を保証するものではありません。くじの購入は自己責任で。
-    <b>19歳未満の方の投票券の購入は法律で禁止されています。</b>
-</span></div>
-<div class="cp">© 2026 totoCast</div>
+
+<div class="wrap">
+  <section class="section results">
+    <div class="results-copy">
+      <span class="eyebrow">RECENT RESULTS</span>
+      <h2 class="h2-lg">外れた回も<br>ぜんぶ見せる</h2>
+      <a class="underline" href="archive.html">過去の回をすべて見る →</a>
+    </div>
+    <div class="results-chart"><a href="archive.html"><span class="val">7<small>/13</small></span><span class="bar" style="height:86px"></span><span class="lbl">第1650回</span></a><a href="archive.html"><span class="val">9<small>/13</small></span><span class="bar" style="height:111px"></span><span class="lbl">第1653回</span></a><a href="archive.html"><span class="val">11<small>/13</small></span><span class="bar" style="height:135px"></span><span class="lbl">第1654回</span></a><a href="archive.html"><span class="val">10<small>/13</small></span><span class="bar" style="height:123px"></span><span class="lbl">第1656回</span></a><a href="archive.html"><img class="chara" src="assets/chara/A_18_agreeing.webp" alt="まずまずの結果にうなずくキャラクター" width="84" height="55"><span class="val">8<small>/13</small></span><span class="bar latest" style="height:98px"></span><span class="lbl">第1658回</span></a></div>
+  </section>
+
+  <section class="section">
+    <div class="steps">
+      <div class="step"><span class="step-no">01</span><h2 class="step-title">予想ページを開く</h2></div>
+      <div class="step"><span class="step-no">02</span><h2 class="step-title">おすすめをワンタップで入力</h2></div>
+      <div class="step"><span class="step-no">03</span><h2 class="step-title">totoの販売サイトで購入</h2></div>
+    </div>
+  </section>
+
+  <section class="section closing">
+    <h2 class="h2-lg">今週の13試合<br>モデルはどう読む？</h2>
+    <a class="btn" href="yosou/1660.html">第1660回の予想へ<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>非公式サイト（日本スポーツ振興センター・Jリーグとは無関係）・的中は保証しません・<strong>19歳未満の購入は法律で禁止</strong></span>
+    <span>出典：投票率・当せん金＝<a href="https://www.toto-dream.com/" target="_blank" rel="noopener">スポーツくじオフィシャルサイト</a>／試合データ＝<a href="https://data.j-league.or.jp/" target="_blank" rel="noopener">Jリーグデータサイト</a>・totoは日本スポーツ振興センターの登録商標です</span>
+    <span><a href="about.html">about・免責</a>　© 2026 totoCast</span>
+  </div>
 </footer>
 </body>
 </html>
