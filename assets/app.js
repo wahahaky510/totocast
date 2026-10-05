@@ -41,12 +41,8 @@
     var recF = {}; try { recF = JSON.parse(picker.getAttribute('data-rec-filter') || '{}'); } catch (e) {}
     var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minGM', 'maxGM'];
     var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minGM: 0, maxGM: 100 };
-    var PRESETS = {
-      honmei: { minUpset: 0, maxUpset: 2, minDraw: 1, maxDraw: 5, minGM: 33, maxGM: 100 },
-      balance: { minUpset: 0, maxUpset: 3, minDraw: 1, maxDraw: 6, minGM: 30, maxGM: 100 },
-      wild: { minUpset: 1, maxUpset: 5, minDraw: 3, maxDraw: 7, minGM: 0, maxGM: 35 },
-      reset: DEF
-    };
+    var PRESETS = { reset: DEF };
+    try { var PP = JSON.parse(picker.getAttribute('data-presets') || '{}'); Object.keys(PP).forEach(function (k) { PRESETS[k] = PP[k]; }); } catch (e) {}
     var KEYS = ['1', '0', '2'];
     var LIMIT = 300000;   // これ以上の組合せは数えない（ブラウザが重くなるため）
 
@@ -105,7 +101,8 @@
       document.querySelectorAll('[data-price]').forEach(function (x) { x.textContent = pTxt; });
       if (fnote) fnote.textContent = missing ? '' : (isDef(f) ? '選んだ目 ' + raw.toLocaleString('ja-JP') + '通り（フィルタなし）'
         : (count == null ? '選んだ目が' + raw.toLocaleString('ja-JP') + '通りと多すぎるため計算できません。目を減らしてください'
-        : '選んだ目 ' + raw.toLocaleString('ja-JP') + '通り → フィルタ後 ' + count.toLocaleString('ja-JP') + '通り'));
+        : '選んだ目 ' + raw.toLocaleString('ja-JP') + '通り → フィルタ後 ' + count.toLocaleString('ja-JP') + '通り'
+          + (count === 0 && f.minUpset > 0 ? '。波乱が' + f.minUpset + '個以上必要です。人気側（投票率55%以上）の逆の目も選んでください' : '')));
       if (combosEl) {
         combosEl.innerHTML = '';
         var show = isDef(f) ? [] : out;
