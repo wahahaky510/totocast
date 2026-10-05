@@ -45,7 +45,8 @@ button { font-family: inherit; }
 }
 .logo { font-family: var(--num); font-weight: 700; font-size: 28px; letter-spacing: .3px; }
 .logo span { color: var(--accent); }
-.logo .logo-toto { font-weight: inherit; color: #fff; -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill; letter-spacing: .6px; }
+.logo .logo-toto { font-weight: inherit; color: #fff; letter-spacing: 1px;
+  text-shadow: 1.5px 0 var(--ink), -1.5px 0 var(--ink), 0 1.5px var(--ink), 0 -1.5px var(--ink), 1px 1px var(--ink), -1px -1px var(--ink), 1px -1px var(--ink), -1px 1px var(--ink); }
 .nav {
   min-width: 0; max-width: calc(100% + 24px); margin: 0 -12px;
   display: flex; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap;
