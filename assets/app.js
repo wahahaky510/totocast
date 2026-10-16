@@ -56,6 +56,37 @@
     }
     function setF(f) { IDS.forEach(function (id) { var el = document.getElementById(id); if (el && f[id] != null) el.value = f[id]; }); }
     function isDef(f) { return IDS.every(function (id) { return f[id] === DEF[id]; }); }
+    // おすすめのフィルタを「実際に残る組合せ」の範囲まで詰める（同じ組合せのまま、範囲が見て分かるように）
+    (function tightenRec() {
+      if (!Object.keys(recF).length) return;
+      var F = {}; IDS.forEach(function (id) { F[id] = recF[id] != null ? recF[id] : DEF[id]; });
+      var L = matches.map(function (m) { return m.getAttribute('data-rec').split(','); });
+      var P = matches.map(function (m) { return m.getAttribute('data-p').split(',').map(Number); });
+      var FV = matches.map(function (m) { return m.getAttribute('data-fav'); });
+      var raw = L.reduce(function (a, l) { return a * l.length; }, 1);
+      if (raw > LIMIT) return;
+      var idx = L.map(function () { return 0; }), n = 0, r = { u0: 99, u1: -1, d0: 99, d1: -1, g0: 999, g1: -1 };
+      for (;;) {
+        var up = 0, dr = 0, lp = 0;
+        for (var i = 0; i < L.length; i++) {
+          var k = L[i][idx[i]];
+          if (k === '0') dr++;
+          if ((FV[i] === 'home' && k === '2') || (FV[i] === 'away' && k === '1')) up++;
+          lp += Math.log(Math.max(P[i][KEYS.indexOf(k)], 0.0001) / 100);
+        }
+        var gm = Math.exp(lp / L.length) * 100;
+        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && gm >= F.minGM && gm <= F.maxGM) {
+          n++; r.u0 = Math.min(r.u0, up); r.u1 = Math.max(r.u1, up); r.d0 = Math.min(r.d0, dr); r.d1 = Math.max(r.d1, dr);
+          r.g0 = Math.min(r.g0, gm); r.g1 = Math.max(r.g1, gm);
+        }
+        var c = L.length - 1;
+        while (c >= 0 && ++idx[c] >= L[c].length) { idx[c] = 0; c--; }
+        if (c < 0) break;
+      }
+      if (!n) return;
+      recF = { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
+               minGM: Math.max(F.minGM, Math.floor(r.g0)), maxGM: Math.min(F.maxGM, Math.ceil(r.g1)) };
+    })();
     function sameF(a, b) { return IDS.every(function (id) { return a[id] === b[id]; }); }
     function isRec() {
       return matches.every(function (m) {
