@@ -103,6 +103,19 @@
           }
         }
       }
+      var gr = document.querySelector('[data-gmrange]');
+      if (gr) {
+        if (missing) { gr.textContent = ''; } else {
+          var lo = 0, hi = 0;
+          matches.forEach(function (m, i) {
+            var p = m.getAttribute('data-p').split(',').map(Number);
+            var v = lists[i].map(function (k) { return Math.log(Math.max(p[KEYS.indexOf(k)], 0.0001) / 100); });
+            lo += Math.min.apply(null, v); hi += Math.max.apply(null, v);
+          });
+          lo = Math.exp(lo / matches.length) * 100; hi = Math.exp(hi / matches.length) * 100;
+          gr.textContent = '今の目で取れる範囲 ' + (Math.floor(lo * 10) / 10).toFixed(1) + '〜' + (Math.ceil(hi * 10) / 10).toFixed(1) + '%';
+        }
+      }
       var cTxt = count == null ? '–' : count.toLocaleString('ja-JP'), pTxt = count == null ? '–' : (count * 100).toLocaleString('ja-JP');
       document.querySelectorAll('[data-count]').forEach(function (x) { x.textContent = cTxt; });
       document.querySelectorAll('[data-price]').forEach(function (x) { x.textContent = pTxt; });
