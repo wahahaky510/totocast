@@ -119,7 +119,7 @@
       hintEl.textContent = missing ? '全試合で1つ以上選んでください'
         : (budgetN ? '予算' + (budgetN * 100).toLocaleString('ja-JP') + '円：おすすめの中から当たりやすい順に' + count + '通り' : (isRec() ? recHint : ''));
       document.querySelectorAll('[data-budget]').forEach(function (x) { var bn = +x.getAttribute('data-budget'); x.setAttribute('aria-pressed', ((bn === 100 ? 0 : bn) === budgetN && isRec()) ? 'true' : 'false'); });
-      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: budgetN })); } catch (e) {}
+      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: budgetN, rec: isRec() })); } catch (e) {}
     }
     function setRec() {
       matches.forEach(function (m) {
@@ -181,7 +181,18 @@
       budgetN = 0;
       update();
     });
-    setRec();
+    // 購入ページなどから戻ったときは、前回の選択を復元する（なければおすすめ）
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem('totocast-card-' + picker.getAttribute('data-round')) || 'null'); } catch (e) {}
+    if (saved && Array.isArray(saved.picks) && saved.picks.length === matches.length && saved.f && !(saved.rec && !saved.top)) {
+      matches.forEach(function (m, i) {
+        opts(m).forEach(function (b) { b.setAttribute('aria-pressed', saved.picks[i].indexOf(b.getAttribute('data-k')) >= 0 ? 'true' : 'false'); });
+      });
+      setF(saved.f); budgetN = saved.top || 0;
+      update();
+    } else {
+      setRec();
+    }
   }
 
   /* ---------- タブ（データベース） ---------- */
