@@ -86,6 +86,9 @@
       if (!n) return;
       recF = { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
                minGM: Math.max(F.minGM, Math.floor(r.g0)), maxGM: Math.min(F.maxGM, Math.ceil(r.g1)) };
+      // 堅さの範囲は過去平均を必ず含める
+      var gmMean = parseFloat(picker.getAttribute('data-gm-mean'));
+      if (!isNaN(gmMean)) { recF.minGM = Math.min(recF.minGM, Math.floor(gmMean)); recF.maxGM = Math.max(recF.maxGM, Math.ceil(gmMean)); }
     })();
     function sameF(a, b) { return IDS.every(function (id) { return a[id] === b[id]; }); }
     function isRec() {
