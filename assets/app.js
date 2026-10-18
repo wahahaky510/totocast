@@ -39,6 +39,9 @@
     var combosEl = document.querySelector('[data-combos]');
     var recHint = picker.getAttribute('data-rec-hint') || '';
     var recF = {}; try { recF = JSON.parse(picker.getAttribute('data-rec-filter') || '{}'); } catch (e) {}
+    var rec2F = {}; try { rec2F = JSON.parse(picker.getAttribute('data-rec2-filter') || '{}'); } catch (e) {}
+    var rec2Top = +(picker.getAttribute('data-rec2-top') || 0), rec2Hint = picker.getAttribute('data-rec2-hint') || '';
+    var mode = 'a';   // a=順当寄り / b=荒れ寄り
     var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minGM', 'maxGM'];
     var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minGM: 0, maxGM: 100 };
     var PRESETS = { reset: DEF };
@@ -86,17 +89,18 @@
       if (!n) return;
       recF = { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
                minGM: Math.max(F.minGM, Math.floor(r.g0)), maxGM: Math.min(F.maxGM, Math.ceil(r.g1)) };
-      // 堅さの範囲は過去平均を必ず含める
-      var gmMean = parseFloat(picker.getAttribute('data-gm-mean'));
-      if (!isNaN(gmMean)) { recF.minGM = Math.min(recF.minGM, Math.floor(gmMean)); recF.maxGM = Math.max(recF.maxGM, Math.ceil(gmMean)); }
+
     })();
     function sameF(a, b) { return IDS.every(function (id) { return a[id] === b[id]; }); }
-    function isRec() {
+    function isRecMode(md) {
+      var attr = md === 'b' ? 'data-rec2' : 'data-rec';
+      if (md === 'b' && !rec2Top) return false;
       return matches.every(function (m) {
-        var rec = m.getAttribute('data-rec').split(','), s = sel(m);
+        var rec = (m.getAttribute(attr) || '').split(','), s = sel(m);
         return s.length === rec.length && s.every(function (k) { return rec.indexOf(k) >= 0; });
-      }) && sameF(getF(), recF);
+      }) && sameF(getF(), md === 'b' ? rec2F : recF);
     }
+    function isRec() { return isRecMode('a') || isRecMode('b'); }
     function update() {
       var lists = matches.map(sel), raw = 1, missing = false;
       lists.forEach(function (l) { if (!l.length) missing = true; raw *= l.length || 1; });
@@ -164,16 +168,19 @@
         combosEl.parentNode.hidden = !show.length;
       }
       hintEl.textContent = missing ? '全試合で1つ以上選んでください'
-        : (budgetN ? '予算' + (budgetN * 100).toLocaleString('ja-JP') + '円：おすすめの中から当たりやすい順に' + count + '通り' : (isRec() ? recHint : ''));
-      document.querySelectorAll('[data-budget]').forEach(function (x) { var bn = +x.getAttribute('data-budget'); x.setAttribute('aria-pressed', ((bn === 100 ? 0 : bn) === budgetN && isRec()) ? 'true' : 'false'); });
-      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: budgetN, rec: isRec() })); } catch (e) {}
+        : (budgetN && !(isRecMode('b') && budgetN === rec2Top) ? '予算' + (budgetN * 100).toLocaleString('ja-JP') + '円：おすすめの中から当たりやすい順に' + count + '通り' : (isRecMode('b') && budgetN === rec2Top ? rec2Hint : (isRecMode('a') ? recHint : '')));
+      document.querySelectorAll('[data-budget]').forEach(function (x) { var bn = +x.getAttribute('data-budget'); x.setAttribute('aria-pressed', ((bn === 100 ? 0 : bn) === budgetN && isRecMode(mode)) ? 'true' : 'false'); });
+      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: budgetN, rec: isRec(), mode: mode })); } catch (e) {}
     }
-    function setRec() {
+    function setRec(md) {
+      md = md || mode; mode = md;
+      var attr = md === 'b' ? 'data-rec2' : 'data-rec';
       matches.forEach(function (m) {
-        var rec = m.getAttribute('data-rec').split(',');
+        var rec = (m.getAttribute(attr) || '').split(',');
         opts(m).forEach(function (b) { b.setAttribute('aria-pressed', rec.indexOf(b.getAttribute('data-k')) >= 0 ? 'true' : 'false'); });
       });
-      setF(Object.keys(recF).length ? recF : DEF);
+      var F = md === 'b' ? rec2F : recF;
+      setF(Object.keys(F).length ? F : DEF);
       update();
     }
     picker.addEventListener('click', function (e) {
@@ -198,30 +205,34 @@
       b.addEventListener('click', function () { budgetN = 0; setF(PRESETS[b.getAttribute('data-preset')]); update(); });
     });
     // 自分で入力した目があるときは、すぐに上書きせず確認を1回挟む
-    var recBtn = document.querySelector('[data-recommend]');
-    var recLabel = recBtn.textContent, armed = false, armTimer = null;
+    var recBtns = { a: document.querySelector('[data-recommend]'), b: document.querySelector('[data-recommend2]') };
+    if (!rec2Top && recBtns.b) { recBtns.b.hidden = true; recBtns.b = null; }
+    var labels = {}; Object.keys(recBtns).forEach(function (k) { if (recBtns[k]) labels[k] = recBtns[k].textContent; });
+    var armed = null, armTimer = null;
     function disarm() {
-      armed = false; clearTimeout(armTimer);
-      recBtn.textContent = recLabel; recBtn.classList.remove('is-confirm');
+      armed = null; clearTimeout(armTimer);
+      Object.keys(recBtns).forEach(function (k) { if (recBtns[k]) { recBtns[k].textContent = labels[k]; recBtns[k].classList.remove('is-confirm'); } });
     }
     function edited() {
       return !isRec() && matches.some(function (m) { return sel(m).length > 0; });
     }
-    var pendingN = 0;
-    function askRec(n) {
-      pendingN = n;
-      if (edited() && !armed) {
-        armed = true;
-        recBtn.textContent = '入力中の目が消えます。もう一度押して確定';
-        recBtn.classList.add('is-confirm');
+    function askRec(md, n) {
+      var btn = recBtns[md] || recBtns.a;
+      if (edited() && armed !== md) {
+        disarm(); armed = md;
+        btn.textContent = '入力中の目が消えます。もう一度押して確定';
+        btn.classList.add('is-confirm');
         armTimer = setTimeout(disarm, 5000);
         return;
       }
-      disarm(); budgetN = pendingN; setRec();
+      disarm();
+      budgetN = n || (md === 'b' ? rec2Top : 0);
+      setRec(md);
     }
-    recBtn.addEventListener('click', function () { askRec(0); });
+    recBtns.a.addEventListener('click', function () { askRec('a', 0); });
+    if (recBtns.b) recBtns.b.addEventListener('click', function () { askRec('b', 0); });
     document.querySelectorAll('[data-budget]').forEach(function (b) {
-      b.addEventListener('click', function () { var n = +b.getAttribute('data-budget'); askRec(n === 100 ? 0 : n); });
+      b.addEventListener('click', function () { var n = +b.getAttribute('data-budget'); askRec(mode, n === 100 ? 0 : n); });
     });
     document.querySelector('[data-clear]').addEventListener('click', function () {
       matches.forEach(function (m) { opts(m).forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); });
@@ -231,14 +242,16 @@
     // 購入ページなどから戻ったときは、前回の選択を復元する（なければおすすめ）
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem('totocast-card-' + picker.getAttribute('data-round')) || 'null'); } catch (e) {}
-    if (saved && Array.isArray(saved.picks) && saved.picks.length === matches.length && saved.f && !(saved.rec && !saved.top)) {
+    if (saved && Array.isArray(saved.picks) && saved.picks.length === matches.length && saved.f && !saved.rec) {
       matches.forEach(function (m, i) {
         opts(m).forEach(function (b) { b.setAttribute('aria-pressed', saved.picks[i].indexOf(b.getAttribute('data-k')) >= 0 ? 'true' : 'false'); });
       });
-      setF(saved.f); budgetN = saved.top || 0;
+      setF(saved.f); budgetN = saved.top || 0; mode = saved.mode || 'a';
       update();
+    } else if (saved && saved.rec && saved.mode === 'b' && rec2Top) {
+      budgetN = saved.top && saved.top < rec2Top ? saved.top : rec2Top; setRec('b');
     } else {
-      setRec();
+      budgetN = saved && saved.rec && saved.top ? saved.top : 0; setRec('a');
     }
   }
 

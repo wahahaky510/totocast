@@ -448,3 +448,5 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .tipbox[hidden] { display: none; }
 
 .gmrange { display:block; color: var(--muted, #888); font-size: 12px; }
+
+.btn-wild { background: #F2B134; color: var(--ink); }
