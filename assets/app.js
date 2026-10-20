@@ -306,7 +306,10 @@
   var KEYS = ['1', '0', '2'];
   var st = null;
   try { st = JSON.parse(localStorage.getItem('totocast-card-' + C.round) || 'null'); } catch (e) {}
-  var lists = (st && st.picks && st.picks.length === C.matches.length && st.picks.every(function (l) { return l.length; })) ? st.picks : C.rec;
+  if (st && st.picks && st.picks.length === C.matches.length && !st.picks.every(function (l) { return l.length; })) {
+    root.innerHTML = '<p class="note">目を選んでいない試合があります。予想ページで全13試合の目を選んでください</p>'; return;
+  }
+  var lists = (st && st.picks && st.picks.length === C.matches.length) ? st.picks : C.rec;
   var f = (st && st.f) || C.filter;
   var src = st ? '予想ページで選んだ目とフィルタ' : 'モデルのおすすめ';
   // 組合せを列挙してフィルタ
@@ -319,7 +322,7 @@
       var k = lists[i][idx[i]], m = C.matches[i];
       if (k === '0') dr++;
       if ((m.fav === 'home' && k === '2') || (m.fav === 'away' && k === '1')) up++;
-      lp += Math.log(Math.max(m.p[KEYS.indexOf(k)], 0.01) / 100);
+      lp += Math.log(Math.max(m.p[KEYS.indexOf(k)], 0.0001) / 100);
       c.push(k);
     }
     var gm = Math.exp(lp / lists.length) * 100;
@@ -329,7 +332,7 @@
     if (j < 0) break;
   }
   if (st && st.top && combos.length > st.top) {
-    var lpOf = function (c) { return c.reduce(function (a, k, i) { return a + Math.log(Math.max(C.matches[i].p[KEYS.indexOf(k)], 0.01) / 100); }, 0); };
+    var lpOf = function (c) { return c.reduce(function (a, k, i) { return a + Math.log(Math.max(C.matches[i].p[KEYS.indexOf(k)], 0.0001) / 100); }, 0); };
     combos.sort(function (a, b) { return lpOf(b) - lpOf(a); });
     combos = combos.slice(0, st.top);
     src += '（予算' + (st.top * 100).toLocaleString('ja-JP') + '円）';
