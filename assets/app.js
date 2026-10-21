@@ -39,16 +39,18 @@
     var combosEl = document.querySelector('[data-combos]');
     var recHint = picker.getAttribute('data-rec-hint') || '';
     var recF = {}; try { recF = JSON.parse(picker.getAttribute('data-rec-filter') || '{}'); } catch (e) {}
-    var rec2F = {}; try { rec2F = JSON.parse(picker.getAttribute('data-rec2-filter') || '{}'); } catch (e) {}
-    var rec2Top = +(picker.getAttribute('data-rec2-top') || 0), rec2Hint = picker.getAttribute('data-rec2-hint') || '';
-    var mode = 'a';   // a=順当寄り / b=荒れ寄り
+    // おすすめ = 「目」と「フィルタ」の組。a=順当寄り / b=荒れ寄り、キーは口数の上限（100・50・30・10）
+    var PLANS = { a: {}, b: {} };
+    try { PLANS = JSON.parse(picker.getAttribute('data-plans') || '{}'); PLANS.a = PLANS.a || {}; PLANS.b = PLANS.b || {}; } catch (e) {}
+    var mode = 'a', planKey = '100';
+    var recBtnsAll = { a: document.querySelector('[data-recommend]'), b: document.querySelector('[data-recommend2]') };
     var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minGM', 'maxGM'];
     var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minGM: 0, maxGM: 100 };
     var PRESETS = { reset: DEF };
     try { var PP = JSON.parse(picker.getAttribute('data-presets') || '{}'); Object.keys(PP).forEach(function (k) { PRESETS[k] = PP[k]; }); } catch (e) {}
     var KEYS = ['1', '0', '2'];
     var LIMIT = 300000;
-    var budgetN = 0;   // 予算モード: フィルタ後の組合せを確率の高い順に budgetN 通りだけ買う   // これ以上の組合せは数えない（ブラウザが重くなるため）
+    var budgetN = 0;   // 互換用（予算はおすすめの「目＋フィルタ」で表すので、確率上位で切ることはしない）
 
     function opts(m) { return Array.prototype.slice.call(m.querySelectorAll('.opt')); }
     function sel(m) { return opts(m).filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).map(function (b) { return b.getAttribute('data-k'); }); }
@@ -60,14 +62,13 @@
     function setF(f) { IDS.forEach(function (id) { var el = document.getElementById(id); if (el && f[id] != null) el.value = f[id]; }); }
     function isDef(f) { return IDS.every(function (id) { return f[id] === DEF[id]; }); }
     // おすすめのフィルタを「実際に残る組合せ」の範囲まで詰める（同じ組合せのまま、範囲が見て分かるように）
-    (function tightenRec() {
-      if (!Object.keys(recF).length) return;
-      var F = {}; IDS.forEach(function (id) { F[id] = recF[id] != null ? recF[id] : DEF[id]; });
-      var L = matches.map(function (m) { return m.getAttribute('data-rec').split(','); });
+    function tighten(L, F0) {
+      if (!F0 || !Object.keys(F0).length) return F0;
+      var F = {}; IDS.forEach(function (id) { F[id] = F0[id] != null ? F0[id] : DEF[id]; });
       var P = matches.map(function (m) { return m.getAttribute('data-p').split(',').map(Number); });
       var FV = matches.map(function (m) { return m.getAttribute('data-fav'); });
       var raw = L.reduce(function (a, l) { return a * l.length; }, 1);
-      if (raw > LIMIT) return;
+      if (raw > LIMIT) return F;
       var idx = L.map(function () { return 0; }), n = 0, r = { u0: 99, u1: -1, d0: 99, d1: -1, g0: 999, g1: -1 };
       for (;;) {
         var up = 0, dr = 0, lp = 0;
@@ -86,21 +87,28 @@
         while (c >= 0 && ++idx[c] >= L[c].length) { idx[c] = 0; c--; }
         if (c < 0) break;
       }
-      if (!n) return;
-      recF = { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
+      if (!n) return F;
+      return { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
                minGM: Math.max(F.minGM, Math.floor(r.g0)), maxGM: Math.min(F.maxGM, Math.ceil(r.g1)) };
-
-    })();
-    function sameF(a, b) { return IDS.every(function (id) { return a[id] === b[id]; }); }
-    function isRecMode(md) {
-      var attr = md === 'b' ? 'data-rec2' : 'data-rec';
-      if (md === 'b' && !rec2Top) return false;
-      return matches.every(function (m) {
-        var rec = (m.getAttribute(attr) || '').split(','), s = sel(m);
-        return s.length === rec.length && s.every(function (k) { return rec.indexOf(k) >= 0; });
-      }) && sameF(getF(), md === 'b' ? rec2F : recF);
     }
-    function isRec() { return isRecMode('a') || isRecMode('b'); }
+    // 順当寄り100口 = 公開している予想（data-rec と data-rec-filter）
+    PLANS.a['100'] = { picks: matches.map(function (m) { return m.getAttribute('data-rec').split(','); }), filter: recF, hint: recHint };
+    ['a', 'b'].forEach(function (md) { Object.keys(PLANS[md]).forEach(function (k) { var pl = PLANS[md][k]; pl.filter = tighten(pl.picks, pl.filter); }); });
+    function sameF(a, b) { return IDS.every(function (id) { return a[id] === b[id]; }); }
+    function isPlan(md, key) {
+      var pl = PLANS[md] && PLANS[md][key];
+      if (!pl) return false;
+      return matches.every(function (m, i) {
+        var rec = pl.picks[i], s = sel(m);
+        return s.length === rec.length && s.every(function (k) { return rec.indexOf(k) >= 0; });
+      }) && sameF(getF(), pl.filter);
+    }
+    function curPlan() {
+      var hit = null;
+      ['a', 'b'].forEach(function (md) { Object.keys(PLANS[md]).forEach(function (k) { if (!hit && isPlan(md, k)) hit = [md, k]; }); });
+      return hit;
+    }
+    function isRec() { return !!curPlan(); }
     function update() {
       var lists = matches.map(sel), raw = 1, missing = false;
       lists.forEach(function (l) { if (!l.length) missing = true; raw *= l.length || 1; });
@@ -168,19 +176,23 @@
         combosEl.parentNode.hidden = !show.length;
       }
       hintEl.textContent = missing ? '全試合で1つ以上選んでください'
-        : (budgetN && !(isRecMode('b') && budgetN === rec2Top) ? '予算' + (budgetN * 100).toLocaleString('ja-JP') + '円：おすすめの中から当たりやすい順に' + count + '通り' : (isRecMode('b') && budgetN === rec2Top ? rec2Hint : (isRecMode('a') ? recHint : '')));
-      document.querySelectorAll('[data-budget]').forEach(function (x) { var bn = +x.getAttribute('data-budget'); x.setAttribute('aria-pressed', ((bn === 100 ? 0 : bn) === budgetN && isRecMode(mode)) ? 'true' : 'false'); });
-      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: budgetN, rec: isRec(), mode: mode })); } catch (e) {}
+        : (function () { var cp = curPlan(); return cp ? (PLANS[cp[0]][cp[1]].hint || '') : ''; })();
+      var cpn = curPlan();
+      document.querySelectorAll('[data-budget]').forEach(function (x) { x.setAttribute('aria-pressed', (cpn && cpn[1] === x.getAttribute('data-budget')) ? 'true' : 'false'); });
+      Object.keys(recBtnsAll).forEach(function (k) { if (recBtnsAll[k]) recBtnsAll[k].setAttribute('aria-pressed', (cpn && cpn[0] === k) ? 'true' : 'false'); });
+      try { localStorage.setItem('totocast-card-' + picker.getAttribute('data-round'), JSON.stringify({ picks: lists, f: f, top: 0, rec: !!cpn, mode: cpn ? cpn[0] : mode, key: cpn ? cpn[1] : '' })); } catch (e) {}
     }
-    function setRec(md) {
-      md = md || mode; mode = md;
-      var attr = md === 'b' ? 'data-rec2' : 'data-rec';
-      matches.forEach(function (m) {
-        var rec = (m.getAttribute(attr) || '').split(',');
+    function setRec(md, key) {
+      md = md || mode; key = key || '100';
+      var pl = PLANS[md] && (PLANS[md][key] || PLANS[md]['100']);
+      if (!pl) { md = 'a'; pl = PLANS.a['100']; }
+      mode = md; planKey = key;
+      matches.forEach(function (m, i) {
+        var rec = pl.picks[i];
         opts(m).forEach(function (b) { b.setAttribute('aria-pressed', rec.indexOf(b.getAttribute('data-k')) >= 0 ? 'true' : 'false'); });
       });
-      var F = md === 'b' ? rec2F : recF;
-      setF(Object.keys(F).length ? F : DEF);
+      setF(Object.keys(pl.filter || {}).length ? pl.filter : DEF);
+      budgetN = 0;
       update();
     }
     picker.addEventListener('click', function (e) {
@@ -205,8 +217,8 @@
       b.addEventListener('click', function () { budgetN = 0; setF(PRESETS[b.getAttribute('data-preset')]); update(); });
     });
     // 自分で入力した目があるときは、すぐに上書きせず確認を1回挟む
-    var recBtns = { a: document.querySelector('[data-recommend]'), b: document.querySelector('[data-recommend2]') };
-    if (!rec2Top && recBtns.b) { recBtns.b.hidden = true; recBtns.b = null; }
+    var recBtns = recBtnsAll;
+    if (!Object.keys(PLANS.b).length && recBtns.b) { recBtns.b.hidden = true; recBtns.b = null; }
     var labels = {}; Object.keys(recBtns).forEach(function (k) { if (recBtns[k]) labels[k] = recBtns[k].textContent; });
     var armed = null, armTimer = null;
     function disarm() {
@@ -216,23 +228,22 @@
     function edited() {
       return !isRec() && matches.some(function (m) { return sel(m).length > 0; });
     }
-    function askRec(md, n) {
+    function askRec(md, key) {
       var btn = recBtns[md] || recBtns.a;
-      if (edited() && armed !== md) {
-        disarm(); armed = md;
+      if (edited() && armed !== md + key) {
+        disarm(); armed = md + key;
         btn.textContent = '入力中の目が消えます。もう一度押して確定';
         btn.classList.add('is-confirm');
         armTimer = setTimeout(disarm, 5000);
         return;
       }
       disarm();
-      budgetN = n || (md === 'b' ? rec2Top : 0);
-      setRec(md);
+      setRec(md, key);
     }
-    recBtns.a.addEventListener('click', function () { askRec('a', 0); });
-    if (recBtns.b) recBtns.b.addEventListener('click', function () { askRec('b', 0); });
+    recBtns.a.addEventListener('click', function () { askRec('a', '100'); });
+    if (recBtns.b) recBtns.b.addEventListener('click', function () { askRec('b', '100'); });
     document.querySelectorAll('[data-budget]').forEach(function (b) {
-      b.addEventListener('click', function () { var n = +b.getAttribute('data-budget'); askRec(mode, n === 100 ? 0 : n); });
+      b.addEventListener('click', function () { askRec(mode, b.getAttribute('data-budget')); });
     });
     document.querySelector('[data-clear]').addEventListener('click', function () {
       matches.forEach(function (m) { opts(m).forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); });
@@ -246,12 +257,12 @@
       matches.forEach(function (m, i) {
         opts(m).forEach(function (b) { b.setAttribute('aria-pressed', saved.picks[i].indexOf(b.getAttribute('data-k')) >= 0 ? 'true' : 'false'); });
       });
-      setF(saved.f); budgetN = saved.top || 0; mode = saved.mode || 'a';
+      setF(saved.f); budgetN = 0; mode = saved.mode || 'a';
       update();
-    } else if (saved && saved.rec && saved.mode === 'b' && rec2Top) {
-      budgetN = saved.top && saved.top < rec2Top ? saved.top : rec2Top; setRec('b');
+    } else if (saved && saved.rec && PLANS[saved.mode] && PLANS[saved.mode][saved.key || '100']) {
+      setRec(saved.mode, saved.key || '100');   // おすすめを選んでいたときは、最新のおすすめで表示
     } else {
-      budgetN = saved && saved.rec && saved.top ? saved.top : 0; setRec('a');
+      setRec('a', '100');
     }
   }
 
@@ -311,7 +322,9 @@
   }
   var lists = (st && st.picks && st.picks.length === C.matches.length) ? st.picks : C.rec;
   var f = (st && st.f) || C.filter;
-  var src = st ? '予想ページで選んだ目とフィルタ' : 'モデルのおすすめ';
+  var src = !st ? 'モデルのおすすめ（順当寄り）'
+    : (st.rec ? 'モデルのおすすめ（' + (st.mode === 'b' ? '荒れ寄り' : '順当寄り') + (st.key && st.key !== '100' ? '・予算' + (+st.key * 100).toLocaleString('ja-JP') + '円' : '') + '）'
+    : '予想ページで選んだ目とフィルタ');
   // 組合せを列挙してフィルタ
   var combos = [], idx = lists.map(function () { return 0; }), raw = 1;
   lists.forEach(function (l) { raw *= l.length; });
@@ -330,12 +343,6 @@
     var j = lists.length - 1;
     while (j >= 0 && ++idx[j] >= lists[j].length) { idx[j] = 0; j--; }
     if (j < 0) break;
-  }
-  if (st && st.top && combos.length > st.top) {
-    var lpOf = function (c) { return c.reduce(function (a, k, i) { return a + Math.log(Math.max(C.matches[i].p[KEYS.indexOf(k)], 0.0001) / 100); }, 0); };
-    combos.sort(function (a, b) { return lpOf(b) - lpOf(a); });
-    combos = combos.slice(0, st.top);
-    src += '（予算' + (st.top * 100).toLocaleString('ja-JP') + '円）';
   }
   if (!combos.length) { root.innerHTML = '<p class="note">フィルタに合う組合せが0通りです。予想ページでフィルタを広げてください</p>'; return; }
   // 重複なしのマルチ券に分割
