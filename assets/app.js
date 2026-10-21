@@ -56,7 +56,7 @@
     function sel(m) { return opts(m).filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).map(function (b) { return b.getAttribute('data-k'); }); }
     function getF() {
       var f = {};
-      IDS.forEach(function (id) { var el = document.getElementById(id); var v = el ? parseInt(el.value, 10) : NaN; f[id] = isNaN(v) ? DEF[id] : v; });
+      IDS.forEach(function (id) { var el = document.getElementById(id); var v = el ? (/GM$/.test(id) ? Math.round(parseFloat(el.value) * 10) / 10 : parseInt(el.value, 10)) : NaN; f[id] = isNaN(v) ? DEF[id] : v; });
       return f;
     }
     function setF(f) { IDS.forEach(function (id) { var el = document.getElementById(id); if (el && f[id] != null) el.value = f[id]; }); }
@@ -79,7 +79,7 @@
           lp += Math.log(Math.max(P[i][KEYS.indexOf(k)], 0.0001) / 100);
         }
         var gm = Math.exp(lp / L.length) * 100;
-        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && gm >= F.minGM && gm <= F.maxGM) {
+        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && gm >= F.minGM - 1e-9 && gm <= F.maxGM + 1e-9) {
           n++; r.u0 = Math.min(r.u0, up); r.u1 = Math.max(r.u1, up); r.d0 = Math.min(r.d0, dr); r.d1 = Math.max(r.d1, dr);
           r.g0 = Math.min(r.g0, gm); r.g1 = Math.max(r.g1, gm);
         }
@@ -89,7 +89,7 @@
       }
       if (!n) return F;
       return { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
-               minGM: Math.max(F.minGM, Math.floor(r.g0)), maxGM: Math.min(F.maxGM, Math.ceil(r.g1)) };
+               minGM: Math.max(F.minGM, Math.floor(r.g0 * 10) / 10), maxGM: Math.min(F.maxGM, Math.ceil(r.g1 * 10) / 10) };
     }
     // 順当寄り100口 = 公開している予想（data-rec と data-rec-filter）
     PLANS.a['100'] = { picks: matches.map(function (m) { return m.getAttribute('data-rec').split(','); }), filter: recF, hint: recHint };
@@ -134,7 +134,7 @@
               s += k;
             }
             var gm = Math.exp(lp / lists.length) * 100;
-            if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM && gm <= f.maxGM) {
+            if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) {
               count++;
               if (budgetN) all.push([lp, s]); else if (out.length < 500) out.push(s);
             }
@@ -339,7 +339,7 @@
       c.push(k);
     }
     var gm = Math.exp(lp / lists.length) * 100;
-    if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM && gm <= f.maxGM) combos.push(c);
+    if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) combos.push(c);
     var j = lists.length - 1;
     while (j >= 0 && ++idx[j] >= lists[j].length) { idx[j] = 0; j--; }
     if (j < 0) break;
