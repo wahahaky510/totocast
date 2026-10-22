@@ -450,3 +450,16 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .gmrange { display:block; color: var(--muted, #888); font-size: 12px; }
 
 .btn-wild { background: #F2B134; color: var(--ink); }
+
+/* 買い目の内訳 */
+.bk-wrap { margin: 10px 0 4px; }
+.bk-wrap > summary { cursor: pointer; font-weight: 700; font-size: 14px; color: var(--accent); }
+.bk { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px 18px; margin-top: 10px; }
+.bk-h { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+.bk-row { display: grid; grid-template-columns: 44px 1fr 38px; align-items: center; gap: 6px; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.bk-k { text-align: right; font-variant-numeric: tabular-nums; }
+.bk-v { text-align: right; font-variant-numeric: tabular-nums; }
+.bk-bar { background: #E6ECE6; border-radius: 3px; height: 8px; overflow: hidden; }
+.bk-bar i { display: block; height: 100%; background: #B9CBBE; }
+.bk-row.max { color: var(--ink); font-weight: 700; }
+.bk-row.max .bk-bar i { background: var(--accent); }

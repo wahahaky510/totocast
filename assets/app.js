@@ -109,13 +109,32 @@
       return hit;
     }
     function isRec() { return !!curPlan(); }
+    // 買い目の内訳：堅さ・引分・波乱・人気側の引分 がそれぞれ何%か
+    var bkEl = document.querySelector('[data-breakdown]');
+    function drawBreakdown(bk, n) {
+      if (!bkEl) return;
+      if (!bk || !n) { bkEl.hidden = true; return; }
+      var defs = [['gm', '堅さ', '%'], ['dr', '引分', ''], ['up', '波乱', ''], ['fd', '人気側の引分', '']];
+      bkEl.innerHTML = defs.map(function (d) {
+        var o = bk[d[0]], ks = Object.keys(o).map(Number).sort(function (a, b) { return a - b; });
+        var mx = Math.max.apply(null, ks.map(function (k) { return o[k]; }));
+        var rows = ks.map(function (k) {
+          var pc = o[k] / n * 100;
+          return '<div class="bk-row' + (o[k] === mx ? ' max' : '') + '"><span class="bk-k">' + k + (d[0] === 'gm' ? '%台' : '') + '</span>'
+            + '<span class="bk-bar"><i style="width:' + (o[k] / mx * 100).toFixed(1) + '%"></i></span><span class="bk-v">' + (pc < 1 ? pc.toFixed(1) : Math.round(pc)) + '%</span></div>';
+        }).join('');
+        return '<div class="bk-item"><div class="bk-h">' + d[1] + '</div>' + rows + '</div>';
+      }).join('');
+      bkEl.hidden = false;
+    }
     function update() {
       var lists = matches.map(sel), raw = 1, missing = false;
       lists.forEach(function (l) { if (!l.length) missing = true; raw *= l.length || 1; });
       var f = getF(), count = raw, out = [];
+      var bk = { gm: {}, dr: {}, up: {}, fd: {} };   // 買い目の内訳（フィルタ後の組合せを項目ごとに数える）
       if (missing) {
         count = 0;
-      } else if (!isDef(f)) {
+      } else if (!isDef(f) || raw <= LIMIT) {
         if (raw > LIMIT) {
           count = null;
         } else {
@@ -136,6 +155,8 @@
             var gm = Math.exp(lp / lists.length) * 100;
             if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) {
               count++;
+              var gb = Math.floor(gm + 1e-9);
+              bk.gm[gb] = (bk.gm[gb] || 0) + 1; bk.dr[dr] = (bk.dr[dr] || 0) + 1; bk.up[up] = (bk.up[up] || 0) + 1; bk.fd[fd] = (bk.fd[fd] || 0) + 1;
               if (budgetN) all.push([lp, s]); else if (out.length < 500) out.push(s);
             }
             var c = lists.length - 1;
@@ -149,6 +170,7 @@
           }
         }
       }
+      drawBreakdown(missing || count == null ? null : bk, count);
       var gr = document.querySelector('[data-gmrange]');
       if (gr) {
         if (missing) { gr.textContent = ''; } else {
