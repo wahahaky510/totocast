@@ -39,7 +39,7 @@
     var combosEl = document.querySelector('[data-combos]');
     var recHint = picker.getAttribute('data-rec-hint') || '';
     var recF = {}; try { recF = JSON.parse(picker.getAttribute('data-rec-filter') || '{}'); } catch (e) {}
-    // おすすめ = 「目」と「フィルタ」の組。a=順当寄り / b=荒れ寄り、キーは口数の上限（100・50・30・10）
+    // おすすめ = 「目」と「フィルタ」の組。a=おすすめの目 / b=荒れ寄り、キーは口数の上限（100・50・30・10）
     var PLANS = { a: {}, b: {} };
     try { PLANS = JSON.parse(picker.getAttribute('data-plans') || '{}'); PLANS.a = PLANS.a || {}; PLANS.b = PLANS.b || {}; } catch (e) {}
     var mode = 'a', planKey = '100';
@@ -91,7 +91,7 @@
       return { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1, minFavDraw: F.minFavDraw, maxFavDraw: F.maxFavDraw,
                minGM: Math.max(F.minGM, Math.floor(r.g0 * 10) / 10), maxGM: Math.min(F.maxGM, Math.ceil(r.g1 * 10) / 10) };
     }
-    // 順当寄り100口 = 公開している予想（data-rec と data-rec-filter）
+    // おすすめの目100口 = 公開している予想（data-rec と data-rec-filter）
     PLANS.a['100'] = { picks: matches.map(function (m) { return m.getAttribute('data-rec').split(','); }), filter: recF, hint: recHint };
     ['a', 'b'].forEach(function (md) { Object.keys(PLANS[md]).forEach(function (k) { var pl = PLANS[md][k]; pl.filter = tighten(pl.picks, pl.filter); }); });
     function sameF(a, b) { return IDS.every(function (id) { return a[id] === b[id]; }); }
@@ -344,8 +344,8 @@
   }
   var lists = (st && st.picks && st.picks.length === C.matches.length) ? st.picks : C.rec;
   var f = (st && st.f) || C.filter;
-  var src = !st ? 'モデルのおすすめ（順当寄り）'
-    : (st.rec ? 'モデルのおすすめ（' + (st.mode === 'b' ? '荒れ寄り' : '順当寄り') + (st.key && st.key !== '100' ? '・予算' + (+st.key * 100).toLocaleString('ja-JP') + '円' : '') + '）'
+  var src = !st ? 'おすすめの目'
+    : (st.rec ? (st.mode === 'b' ? '荒れ寄り' : 'おすすめの目') + (st.key && st.key !== '100' ? '（予算' + (+st.key * 100).toLocaleString('ja-JP') + '円）' : '')
     : '予想ページで選んだ目とフィルタ');
   // 組合せを列挙してフィルタ
   var combos = [], idx = lists.map(function () { return 0; }), raw = 1;
