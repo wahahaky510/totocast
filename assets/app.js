@@ -44,8 +44,8 @@
     try { PLANS = JSON.parse(picker.getAttribute('data-plans') || '{}'); PLANS.a = PLANS.a || {}; PLANS.b = PLANS.b || {}; } catch (e) {}
     var mode = 'a', planKey = '100';
     var recBtnsAll = { a: document.querySelector('[data-recommend]'), b: document.querySelector('[data-recommend2]') };
-    var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minGM', 'maxGM'];
-    var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minGM: 0, maxGM: 100 };
+    var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minFavDraw', 'maxFavDraw', 'minGM', 'maxGM'];
+    var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minFavDraw: 0, maxFavDraw: 13, minGM: 0, maxGM: 100 };
     var PRESETS = { reset: DEF };
     try { var PP = JSON.parse(picker.getAttribute('data-presets') || '{}'); Object.keys(PP).forEach(function (k) { PRESETS[k] = PP[k]; }); } catch (e) {}
     var KEYS = ['1', '0', '2'];
@@ -59,7 +59,7 @@
       IDS.forEach(function (id) { var el = document.getElementById(id); var v = el ? (/GM$/.test(id) ? Math.round(parseFloat(el.value) * 10) / 10 : parseInt(el.value, 10)) : NaN; f[id] = isNaN(v) ? DEF[id] : v; });
       return f;
     }
-    function setF(f) { IDS.forEach(function (id) { var el = document.getElementById(id); if (el && f[id] != null) el.value = f[id]; }); }
+    function setF(f) { IDS.forEach(function (id) { var el = document.getElementById(id); if (el) el.value = f[id] != null ? f[id] : DEF[id]; }); }
     function isDef(f) { return IDS.every(function (id) { return f[id] === DEF[id]; }); }
     // おすすめのフィルタを「実際に残る組合せ」の範囲まで詰める（同じ組合せのまま、範囲が見て分かるように）
     function tighten(L, F0) {
@@ -71,15 +71,15 @@
       if (raw > LIMIT) return F;
       var idx = L.map(function () { return 0; }), n = 0, r = { u0: 99, u1: -1, d0: 99, d1: -1, g0: 999, g1: -1 };
       for (;;) {
-        var up = 0, dr = 0, lp = 0;
+        var up = 0, dr = 0, fd = 0, lp = 0;
         for (var i = 0; i < L.length; i++) {
           var k = L[i][idx[i]];
-          if (k === '0') dr++;
+          if (k === '0') { dr++; if (FV[i] === 'home' || FV[i] === 'away') fd++; }
           if ((FV[i] === 'home' && k === '2') || (FV[i] === 'away' && k === '1')) up++;
           lp += Math.log(Math.max(P[i][KEYS.indexOf(k)], 0.0001) / 100);
         }
         var gm = Math.exp(lp / L.length) * 100;
-        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && gm >= F.minGM - 1e-9 && gm <= F.maxGM + 1e-9) {
+        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && fd >= (F.minFavDraw || 0) && fd <= (F.maxFavDraw == null ? 13 : F.maxFavDraw) && gm >= F.minGM - 1e-9 && gm <= F.maxGM + 1e-9) {
           n++; r.u0 = Math.min(r.u0, up); r.u1 = Math.max(r.u1, up); r.d0 = Math.min(r.d0, dr); r.d1 = Math.max(r.d1, dr);
           r.g0 = Math.min(r.g0, gm); r.g1 = Math.max(r.g1, gm);
         }
@@ -88,7 +88,7 @@
         if (c < 0) break;
       }
       if (!n) return F;
-      return { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1,
+      return { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1, minFavDraw: F.minFavDraw, maxFavDraw: F.maxFavDraw,
                minGM: Math.max(F.minGM, Math.floor(r.g0 * 10) / 10), maxGM: Math.min(F.maxGM, Math.ceil(r.g1 * 10) / 10) };
     }
     // 順当寄り100口 = 公開している予想（data-rec と data-rec-filter）
@@ -125,16 +125,16 @@
           var all = [];
           var idx = lists.map(function () { return 0; });
           for (;;) {
-            var up = 0, dr = 0, lp = 0, s = '';
+            var up = 0, dr = 0, fd = 0, lp = 0, s = '';
             for (var i = 0; i < lists.length; i++) {
               var k = lists[i][idx[i]], j = KEYS.indexOf(k);
-              if (k === '0') dr++;
+              if (k === '0') { dr++; if (FV[i] === 'home' || FV[i] === 'away') fd++; }
               if ((FV[i] === 'home' && k === '2') || (FV[i] === 'away' && k === '1')) up++;
               lp += Math.log(Math.max(P[i][j], 0.0001) / 100);
               s += k;
             }
             var gm = Math.exp(lp / lists.length) * 100;
-            if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) {
+            if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) {
               count++;
               if (budgetN) all.push([lp, s]); else if (out.length < 500) out.push(s);
             }
@@ -330,16 +330,16 @@
   lists.forEach(function (l) { raw *= l.length; });
   if (raw > 300000) { root.innerHTML = '<p class="note">選んだ目が多すぎます（' + raw.toLocaleString('ja-JP') + '通り）。予想ページで目を減らしてください</p>'; return; }
   for (;;) {
-    var up = 0, dr = 0, lp = 0, c = [];
+    var up = 0, dr = 0, fd = 0, lp = 0, c = [];
     for (var i = 0; i < lists.length; i++) {
       var k = lists[i][idx[i]], m = C.matches[i];
-      if (k === '0') dr++;
+      if (k === '0') { dr++; if (m.fav === 'home' || m.fav === 'away') fd++; }
       if ((m.fav === 'home' && k === '2') || (m.fav === 'away' && k === '1')) up++;
       lp += Math.log(Math.max(m.p[KEYS.indexOf(k)], 0.0001) / 100);
       c.push(k);
     }
     var gm = Math.exp(lp / lists.length) * 100;
-    if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) combos.push(c);
+    if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) combos.push(c);
     var j = lists.length - 1;
     while (j >= 0 && ++idx[j] >= lists[j].length) { idx[j] = 0; j--; }
     if (j < 0) break;
