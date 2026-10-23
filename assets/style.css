@@ -463,3 +463,14 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .bk-bar i { display: block; height: 100%; background: #B9CBBE; }
 .bk-row.max { color: var(--ink); font-weight: 700; }
 .bk-row.max .bk-bar i { background: var(--accent); }
+
+.bk-matches { grid-column: 1 / -1; }
+.bk-tbl { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.bk-tbl th { font-size: 12px; color: var(--muted); font-weight: 700; text-align: right; padding: 2px 6px; }
+.bk-tbl th:nth-child(2) { text-align: left; }
+.bk-tbl td { padding: 4px 6px; text-align: right; border-top: 1px solid #E6ECE6; }
+.bk-tbl td.bk-no { color: var(--muted); width: 22px; }
+.bk-tbl td.bk-name { text-align: left; color: var(--ink); white-space: nowrap; }
+.bk-tbl td.none { color: #B8C2BC; }
+.bk-tbl td.some { color: var(--ink); }
+.bk-tbl td.all { color: var(--accent); font-weight: 700; }

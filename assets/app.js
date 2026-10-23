@@ -124,14 +124,21 @@
             + '<span class="bk-bar"><i style="width:' + (o[k] / mx * 100).toFixed(1) + '%"></i></span><span class="bk-v">' + (pc < 1 ? pc.toFixed(1) : Math.round(pc)) + '%</span></div>';
         }).join('');
         return '<div class="bk-item"><div class="bk-h">' + d[1] + '</div>' + rows + '</div>';
-      }).join('');
+      }).join('')
+        // 試合ごとに、買い目の中で 1・0・2 がそれぞれ何%か
+        + '<div class="bk-item bk-matches"><div class="bk-h">試合ごとの目の割合</div><table class="bk-tbl"><thead><tr><th></th><th>試合</th><th>1</th><th>0</th><th>2</th></tr></thead><tbody>'
+        + matches.map(function (m, i) {
+            var c = bk.mt[i];
+            function cell(k) { var pc = c[k] / n * 100; return '<td class="' + (pc >= 99.95 ? 'all' : (pc > 0 ? 'some' : 'none')) + '">' + (pc > 0 && pc < 1 ? pc.toFixed(1) : Math.round(pc)) + '%</td>'; }
+            return '<tr><td class="bk-no">' + (i + 1) + '</td><td class="bk-name">' + (m.getAttribute('data-short') || '') + '</td>' + cell('1') + cell('0') + cell('2') + '</tr>';
+          }).join('') + '</tbody></table></div>';
       bkEl.hidden = false;
     }
     function update() {
       var lists = matches.map(sel), raw = 1, missing = false;
       lists.forEach(function (l) { if (!l.length) missing = true; raw *= l.length || 1; });
       var f = getF(), count = raw, out = [];
-      var bk = { gm: {}, dr: {}, up: {}, fd: {} };   // 買い目の内訳（フィルタ後の組合せを項目ごとに数える）
+      var bk = { gm: {}, dr: {}, up: {}, fd: {}, mt: lists.map(function () { return { '1': 0, '0': 0, '2': 0 }; }) };   // 買い目の内訳（フィルタ後の組合せを項目ごとに数える）
       if (missing) {
         count = 0;
       } else if (!isDef(f) || raw <= LIMIT) {
@@ -156,6 +163,7 @@
             if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) {
               count++;
               var gb = Math.floor(gm + 1e-9);
+              for (var q = 0; q < lists.length; q++) bk.mt[q][s.charAt(q)]++;
               bk.gm[gb] = (bk.gm[gb] || 0) + 1; bk.dr[dr] = (bk.dr[dr] || 0) + 1; bk.up[up] = (bk.up[up] || 0) + 1; bk.fd[fd] = (bk.fd[fd] || 0) + 1;
               if (budgetN) all.push([lp, s]); else if (out.length < 500) out.push(s);
             }
