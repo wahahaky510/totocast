@@ -474,3 +474,16 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .bk-tbl td.none { color: #B8C2BC; }
 .bk-tbl td.some { color: var(--ink); }
 .bk-tbl td.all { color: var(--accent); font-weight: 700; }
+
+/* 当たる目の投票率（5グループ） */
+.vgf { margin: 18px 0 0; padding: 14px 14px 10px; border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+.vgf legend { padding: 0 6px; font-weight: 700; font-size: 14px; }
+.vgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.vgrid label { display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 14px; min-width: 0; }
+.vgrid label small { font-weight: 400; color: var(--muted); font-size: 11px; }
+.vgrid .frange input { width: 52px; font-size: 16px; padding: 7px 4px; }
+.vgf > .note { display: block; margin-top: 8px; }
+@media (max-width: 760px) { .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.vgt { display: inline-block; margin-left: 2px; padding: 0 5px; border-radius: 6px; font-size: 10px; font-weight: 700; line-height: 16px; vertical-align: 1px; background: rgba(127,127,127,.14); }
+.vgt0 { background: rgba(31,99,74,.16); } .vgt1 { background: rgba(31,99,74,.09); }
+.vgt3 { background: rgba(154,66,10,.10); } .vgt4 { background: rgba(154,66,10,.20); }

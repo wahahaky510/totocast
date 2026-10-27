@@ -44,8 +44,14 @@
     try { PLANS = JSON.parse(picker.getAttribute('data-plans') || '{}'); PLANS.a = PLANS.a || {}; PLANS.b = PLANS.b || {}; } catch (e) {}
     var mode = 'a', planKey = '100';
     var recBtnsAll = { a: document.querySelector('[data-recommend]'), b: document.querySelector('[data-recommend2]') };
-    var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minFavDraw', 'maxFavDraw', 'minGM', 'maxGM'];
-    var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minFavDraw: 0, maxFavDraw: 13, minGM: 0, maxGM: 100 };
+    var IDS = ['minUpset', 'maxUpset', 'minDraw', 'maxDraw', 'minFavDraw', 'maxFavDraw', 'minGM', 'maxGM',
+               'minVG0', 'maxVG0', 'minVG1', 'maxVG1', 'minVG2', 'maxVG2', 'minVG3', 'maxVG3', 'minVG4', 'maxVG4'];
+    var DEF = { minUpset: 0, maxUpset: 13, minDraw: 0, maxDraw: 13, minFavDraw: 0, maxFavDraw: 13, minGM: 0, maxGM: 100,
+                minVG0: 0, maxVG0: 13, minVG1: 0, maxVG1: 13, minVG2: 0, maxVG2: 13, minVG3: 0, maxVG3: 13, minVG4: 0, maxVG4: 13 };
+    var VGN = ['大人気', '人気', '中間', '穴', '大穴'];
+    // 目の投票率から5グループ（0=大人気70%+ 1=人気55-70 2=中間30-55 3=穴15-30 4=大穴<15）
+    var VG = matches.map(function (m) { return (m.getAttribute('data-v') || '').split(',').map(function (v) { v = +v; return v >= 70 ? 0 : v >= 55 ? 1 : v >= 30 ? 2 : v >= 15 ? 3 : 4; }); });
+    function vgOk(c, F) { for (var j = 0; j < 5; j++) { var lo = F['minVG' + j], hi = F['maxVG' + j]; if (c[j] < (lo == null ? 0 : lo) || c[j] > (hi == null ? 13 : hi)) return false; } return true; }
     var PRESETS = { reset: DEF };
     try { var PP = JSON.parse(picker.getAttribute('data-presets') || '{}'); Object.keys(PP).forEach(function (k) { PRESETS[k] = PP[k]; }); } catch (e) {}
     var KEYS = ['1', '0', '2'];
@@ -71,15 +77,16 @@
       if (raw > LIMIT) return F;
       var idx = L.map(function () { return 0; }), n = 0, r = { u0: 99, u1: -1, d0: 99, d1: -1, g0: 999, g1: -1 };
       for (;;) {
-        var up = 0, dr = 0, fd = 0, lp = 0;
+        var up = 0, dr = 0, fd = 0, lp = 0, vc = [0, 0, 0, 0, 0];
         for (var i = 0; i < L.length; i++) {
           var k = L[i][idx[i]];
+          vc[VG[i][KEYS.indexOf(k)]]++;
           if (k === '0') { dr++; if (FV[i] === 'home' || FV[i] === 'away') fd++; }
           if ((FV[i] === 'home' && k === '2') || (FV[i] === 'away' && k === '1')) up++;
           lp += Math.log(Math.max(P[i][KEYS.indexOf(k)], 0.0001) / 100);
         }
         var gm = Math.exp(lp / L.length) * 100;
-        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && fd >= (F.minFavDraw || 0) && fd <= (F.maxFavDraw == null ? 13 : F.maxFavDraw) && gm >= F.minGM - 1e-9 && gm <= F.maxGM + 1e-9) {
+        if (up >= F.minUpset && up <= F.maxUpset && dr >= F.minDraw && dr <= F.maxDraw && fd >= (F.minFavDraw || 0) && fd <= (F.maxFavDraw == null ? 13 : F.maxFavDraw) && gm >= F.minGM - 1e-9 && gm <= F.maxGM + 1e-9 && vgOk(vc, F)) {
           n++; r.u0 = Math.min(r.u0, up); r.u1 = Math.max(r.u1, up); r.d0 = Math.min(r.d0, dr); r.d1 = Math.max(r.d1, dr);
           r.g0 = Math.min(r.g0, gm); r.g1 = Math.max(r.g1, gm);
         }
@@ -88,8 +95,10 @@
         if (c < 0) break;
       }
       if (!n) return F;
-      return { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1, minFavDraw: F.minFavDraw, maxFavDraw: F.maxFavDraw,
+      var T = { minUpset: r.u0, maxUpset: r.u1, minDraw: r.d0, maxDraw: r.d1, minFavDraw: F.minFavDraw, maxFavDraw: F.maxFavDraw,
                minGM: Math.max(F.minGM, Math.floor(r.g0 * 10) / 10), maxGM: Math.min(F.maxGM, Math.ceil(r.g1 * 10) / 10) };
+      for (var j = 0; j < 5; j++) { T['minVG' + j] = F['minVG' + j]; T['maxVG' + j] = F['maxVG' + j]; }
+      return T;
     }
     // おすすめの目100口 = 公開している予想（data-rec と data-rec-filter）
     PLANS.a['100'] = { picks: matches.map(function (m) { return m.getAttribute('data-rec').split(','); }), filter: recF, hint: recHint };
@@ -114,7 +123,8 @@
     function drawBreakdown(bk, n) {
       if (!bkEl) return;
       if (!bk || !n) { bkEl.hidden = true; return; }
-      var defs = [['gm', '堅さ', '%'], ['dr', '引分', ''], ['up', '波乱', ''], ['fd', '人気側の引分', '']];
+      var defs = [['gm', '堅さ', '%'], ['dr', '引分', ''], ['up', '波乱', ''], ['fd', '人気側の引分', ''],
+                  ['v0', '大人気（投票70%以上）', ''], ['v1', '人気（55〜70%）', ''], ['v2', '中間（30〜55%）', ''], ['v3', '穴（15〜30%）', ''], ['v4', '大穴（15%未満）', '']];
       bkEl.innerHTML = defs.map(function (d) {
         var o = bk[d[0]], ks = Object.keys(o).map(Number).sort(function (a, b) { return a - b; });
         var mx = Math.max.apply(null, ks.map(function (k) { return o[k]; }));
@@ -138,7 +148,7 @@
       var lists = matches.map(sel), raw = 1, missing = false;
       lists.forEach(function (l) { if (!l.length) missing = true; raw *= l.length || 1; });
       var f = getF(), count = raw, out = [];
-      var bk = { gm: {}, dr: {}, up: {}, fd: {}, mt: lists.map(function () { return { '1': 0, '0': 0, '2': 0 }; }) };   // 買い目の内訳（フィルタ後の組合せを項目ごとに数える）
+      var bk = { gm: {}, dr: {}, up: {}, fd: {}, v0: {}, v1: {}, v2: {}, v3: {}, v4: {}, mt: lists.map(function () { return { '1': 0, '0': 0, '2': 0 }; }) };   // 買い目の内訳（フィルタ後の組合せを項目ごとに数える）
       if (missing) {
         count = 0;
       } else if (!isDef(f) || raw <= LIMIT) {
@@ -151,17 +161,19 @@
           var all = [];
           var idx = lists.map(function () { return 0; });
           for (;;) {
-            var up = 0, dr = 0, fd = 0, lp = 0, s = '';
+            var up = 0, dr = 0, fd = 0, lp = 0, s = '', vc = [0, 0, 0, 0, 0];
             for (var i = 0; i < lists.length; i++) {
               var k = lists[i][idx[i]], j = KEYS.indexOf(k);
+              vc[VG[i][j]]++;
               if (k === '0') { dr++; if (FV[i] === 'home' || FV[i] === 'away') fd++; }
               if ((FV[i] === 'home' && k === '2') || (FV[i] === 'away' && k === '1')) up++;
               lp += Math.log(Math.max(P[i][j], 0.0001) / 100);
               s += k;
             }
             var gm = Math.exp(lp / lists.length) * 100;
-            if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) {
+            if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9 && vgOk(vc, f)) {
               count++;
+              for (var vj = 0; vj < 5; vj++) bk['v' + vj][vc[vj]] = (bk['v' + vj][vc[vj]] || 0) + 1;
               var gb = Math.floor(gm + 1e-9);
               for (var q = 0; q < lists.length; q++) bk.mt[q][s.charAt(q)]++;
               bk.gm[gb] = (bk.gm[gb] || 0) + 1; bk.dr[dr] = (bk.dr[dr] || 0) + 1; bk.up[up] = (bk.up[up] || 0) + 1; bk.fd[fd] = (bk.fd[fd] || 0) + 1;
@@ -352,6 +364,7 @@
   }
   var lists = (st && st.picks && st.picks.length === C.matches.length) ? st.picks : C.rec;
   var f = (st && st.f) || C.filter;
+  function vgOk(c) { for (var j = 0; j < 5; j++) { var lo = f['minVG' + j], hi = f['maxVG' + j]; if (c[j] < (lo == null ? 0 : lo) || c[j] > (hi == null ? 13 : hi)) return false; } return true; }
   var src = !st ? 'おすすめの目'
     : (st.rec ? (st.mode === 'b' ? '荒れ寄り' : 'おすすめの目') + (st.key && st.key !== '100' ? '（予算' + (+st.key * 100).toLocaleString('ja-JP') + '円）' : '')
     : '予想ページで選んだ目とフィルタ');
@@ -360,16 +373,17 @@
   lists.forEach(function (l) { raw *= l.length; });
   if (raw > 300000) { root.innerHTML = '<p class="note">選んだ目が多すぎます（' + raw.toLocaleString('ja-JP') + '通り）。予想ページで目を減らしてください</p>'; return; }
   for (;;) {
-    var up = 0, dr = 0, fd = 0, lp = 0, c = [];
+    var up = 0, dr = 0, fd = 0, lp = 0, c = [], vc = [0, 0, 0, 0, 0];
     for (var i = 0; i < lists.length; i++) {
       var k = lists[i][idx[i]], m = C.matches[i];
+      if (m.v) { var vv = +m.v[KEYS.indexOf(k)]; vc[vv >= 70 ? 0 : vv >= 55 ? 1 : vv >= 30 ? 2 : vv >= 15 ? 3 : 4]++; }
       if (k === '0') { dr++; if (m.fav === 'home' || m.fav === 'away') fd++; }
       if ((m.fav === 'home' && k === '2') || (m.fav === 'away' && k === '1')) up++;
       lp += Math.log(Math.max(m.p[KEYS.indexOf(k)], 0.0001) / 100);
       c.push(k);
     }
     var gm = Math.exp(lp / lists.length) * 100;
-    if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9) combos.push(c);
+    if (up >= f.minUpset && up <= f.maxUpset && dr >= f.minDraw && dr <= f.maxDraw && fd >= (f.minFavDraw || 0) && fd <= (f.maxFavDraw == null ? 13 : f.maxFavDraw) && gm >= f.minGM - 1e-9 && gm <= f.maxGM + 1e-9 && vgOk(vc)) combos.push(c);
     var j = lists.length - 1;
     while (j >= 0 && ++idx[j] >= lists[j].length) { idx[j] = 0; j--; }
     if (j < 0) break;
