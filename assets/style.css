@@ -488,3 +488,14 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .vgt { display: inline-block; margin-left: 2px; padding: 0 5px; border-radius: 6px; font-size: 10px; font-weight: 700; line-height: 16px; vertical-align: 1px; background: rgba(127,127,127,.14); }
 .vgt0 { background: rgba(31,99,74,.16); } .vgt1 { background: rgba(31,99,74,.09); }
 .vgt3 { background: rgba(154,66,10,.10); } .vgt4 { background: rgba(154,66,10,.20); }
+
+/* 前後の回・カップ戦の注記・過去の投票率 */
+.round-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--line); }
+.round-nav > * { flex: 1; } .round-nav > :nth-child(2) { justify-content: center; text-align: center; } .round-nav > :last-child { justify-content: flex-end; text-align: right; }
+.match-info .cup-note { color: var(--warn); }
+.vround { background: var(--surface); border-radius: 14px; padding: 4px 16px 12px; margin-bottom: 10px; }
+.vround summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.vround summary .num { font-family: var(--num); font-size: 20px; } .vround summary small { color: var(--muted); font-weight: 400; font-size: 13px; }
+.vtbl td, .vtbl th { padding: 8px 5px; } .vtbl th:first-child, .vtbl td:first-child { padding-left: 4px; } .vtbl th:last-child, .vtbl td:last-child { padding-right: 4px; text-align: center; }
+.vtbl .n { font-size: 15px; text-align: right; } .vtbl .pos { color: var(--muted); } .vround summary .num { white-space: nowrap; } .vtbl .team { white-space: normal; } .vtbl .team small { color: var(--faint); }
+.vtbl td.vhit { background: var(--lime, #DDF08A); font-weight: 700; border-radius: 6px; }
