@@ -499,3 +499,24 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .vtbl td, .vtbl th { padding: 8px 5px; } .vtbl th:first-child, .vtbl td:first-child { padding-left: 4px; } .vtbl th:last-child, .vtbl td:last-child { padding-right: 4px; text-align: center; }
 .vtbl .n { font-size: 15px; text-align: right; } .vtbl .pos { color: var(--muted); } .vround summary .num { white-space: nowrap; } .vtbl .team { white-space: normal; } .vtbl .team small { color: var(--faint); }
 .vtbl td.vhit { background: var(--lime, #DDF08A); font-weight: 700; border-radius: 6px; }
+
+/* 予想者 */
+.yosoka-strip { display: flex; align-items: center; gap: 12px; margin-top: 24px; padding: 12px 16px; background: var(--surface); border-radius: 16px; border: 1px solid var(--line); }
+.yosoka-strip .ys-ims { display: flex; flex: none; } .yosoka-strip .ys-ims img { margin-left: -10px; } .yosoka-strip .ys-ims img:first-child { margin-left: 0; }
+.yosoka-strip b { display: block; font-size: 15px; } .yosoka-strip small { color: var(--muted); font-size: 12px; line-height: 1.5; display: block; }
+.yosoka-strip .ys-go { margin-left: auto; font-weight: 700; color: var(--accent); font-size: 18px; }
+.yk-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .yk-grid { grid-template-columns: 1fr 1fr; } }
+.yk-card { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border-radius: 18px; padding: 16px; border-top: 5px solid var(--yk); }
+.yk-card > img { flex: none; width: 76px; height: 76px; } @media (min-width: 760px) { .yk-card > img { width: 96px; height: 96px; } }
+.yk-role { margin: 0; font-size: 12px; font-weight: 700; color: var(--yk); }
+.yk-name { margin: 2px 0 6px; font-size: 22px; }
+.yk-say { margin: 0 0 10px; font-size: 14px; line-height: 1.75; background: var(--bg); border-radius: 12px; padding: 8px 12px; }
+.yk-stats { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0 0 8px; } .yk-stats dd { white-space: nowrap; } .yk-stats div { margin: 0; } .yk-stats dt { font-size: 11px; color: var(--muted); } .yk-stats dd { margin: 0; font-size: 13px; } .yk-stats dd b { font-size: 20px; }
+.yk-desc { margin: 0; font-size: 13px; color: var(--sub); line-height: 1.7; }
+.yk-tbl th { text-align: center; font-size: 10px; padding: 6px 2px; white-space: nowrap; line-height: 1.3; } .yk-tbl th img { vertical-align: middle; }
+.yk-tbl td { padding: 8px 2px; } .yk-tbl .team { white-space: nowrap; font-size: 11px; } .yk-tbl .pos { font-size: 12px; color: var(--muted); } .yk-tbl .team small { color: var(--faint); }
+.yk-pk { text-align: center; font-size: 12px; min-width: 40px; letter-spacing: 0; color: var(--sub); white-space: nowrap; } .yk-pk.yk-one { font-weight: 700; color: var(--ink); }
+.yk-pk.yk-hit { background: var(--lime-bg); } .yk-win { background: var(--lime-bg); } .yk-sum td { background: var(--bg); }
+.yk-m { display: inline-block; width: 12px; height: 19px; line-height: 19px; border-radius: 4px; font-family: var(--num); font-size: 14px; font-weight: 600; color: #D3D8D2; text-align: center; }
+.yk-m.on { background: var(--lime-bg); color: var(--accent); font-weight: 700; } .yk-m.ok { background: var(--accent); color: #fff; }
