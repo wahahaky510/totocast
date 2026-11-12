@@ -520,3 +520,5 @@ body:has(.card-page) .site-header { padding-bottom: 0; }
 .yk-pk.yk-hit { background: var(--lime-bg); } .yk-win { background: var(--lime-bg); } .yk-sum td { background: var(--bg); }
 .yk-m { display: inline-block; width: 12px; height: 19px; line-height: 19px; border-radius: 4px; font-family: var(--num); font-size: 14px; font-weight: 600; color: #D3D8D2; text-align: center; }
 .yk-m.on { background: var(--lime-bg); color: var(--accent); font-weight: 700; } .yk-m.ok { background: var(--accent); color: #fff; }
+.yk-srow td { background: var(--bg); font-size: 11px; color: var(--sub); padding: 6px 2px; } .yk-srow td:first-child { padding-left: 8px; font-weight: 700; white-space: normal; font-size: 12px; color: var(--ink); } .yk-srow td:first-child small { display: block; font-weight: 400; font-size: 10px; color: var(--muted); }
+.yk-sv { text-align: center; } .yk-sv b { font-size: 16px; color: var(--ink); white-space: nowrap; }
