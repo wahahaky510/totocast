@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://totocast.pages.dev/sitemap.xml
+Sitemap: https://totocast.pages.dev/sitemap.txt
