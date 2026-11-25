@@ -1,5 +1,5 @@
 https://totocast.pages.dev/
-https://totocast.pages.dev/yosou/1674
+https://totocast.pages.dev/yosou/1675
 https://totocast.pages.dev/jisseki
 https://totocast.pages.dev/db
 https://totocast.pages.dev/news
@@ -8,6 +8,7 @@ https://totocast.pages.dev/touhyo
 https://totocast.pages.dev/yosoka
 https://totocast.pages.dev/guide
 https://totocast.pages.dev/about
+https://totocast.pages.dev/yosou/1674
 https://totocast.pages.dev/yosou/1673
 https://totocast.pages.dev/yosou/1672
 https://totocast.pages.dev/yosou/1670
